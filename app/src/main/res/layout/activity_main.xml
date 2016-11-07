@@ -13,14 +13,14 @@
     tools:context="com.fishfillet.shoal.MainActivity">
 
     <Button
-        android:id="@+id/driver"
+        android:id="@+id/buttonDriver"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="@string/driver"
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/rider"
+        android:id="@+id/buttonRider"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="@string/rider"

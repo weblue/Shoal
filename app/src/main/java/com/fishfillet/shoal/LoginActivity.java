@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.fishfillet.shoal.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -56,8 +56,8 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Intent signup = new Intent(LoginActivity.this,SignUpActivity.class);
-                startActivity(signup);
+//                Intent signup = new Intent(LoginActivity.this,SignUpActivity.class);
+//                startActivity(signup);
 
             }
         });
@@ -66,8 +66,8 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Intent forgot = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
-                startActivity(forgot);
+//                Intent forgot = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+//                startActivity(forgot);
 
             }
         });
@@ -95,12 +95,15 @@ public class LoginActivity extends AppCompatActivity{
         mProgress.setMessage("Signing in please wait.....");
         mProgress.show();
 
+        final Intent intent = new Intent(this, MainActivity.class);
+
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()){
                     Toast.makeText(LoginActivity.this,"Successfully signed in", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
                 }else{
                     Toast.makeText(LoginActivity.this,"There was an error....", Toast.LENGTH_LONG).show();
                 }
