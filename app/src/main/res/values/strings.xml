@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Shoal</string>
+    <string name="driver"><![CDATA[< Driver]]></string>
+    <string name="rider"><![CDATA[Rider >]]></string>
+</resources>
