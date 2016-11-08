@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "201280665177",
+    "firebase_url": "https://shoal-5fcc0.firebaseio.com",
+    "project_id": "shoal-5fcc0",
+    "storage_bucket": "shoal-5fcc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201280665177:android:aef93d98385f3457",
+        "android_client_info": {
+          "package_name": "com.fishfillet.shoal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201280665177-qe744u0e2ep6lmqln6v8mm3o044laab0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr81e7ZHhHJ03aw79iTIPCtUb7S-j2f7Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
