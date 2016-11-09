@@ -131,7 +131,7 @@ public class Ride {
 
         }
 
-        public RideBuilder setDriver(String driverId) {
+        public RideBuilder setDriverId(String driverId) {
             this.driverId = driverId;
             return this;
         }
