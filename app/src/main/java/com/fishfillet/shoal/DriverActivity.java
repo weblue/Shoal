@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,9 +28,10 @@ import java.util.Map;
 
 
 public class DriverActivity extends BaseActivity {
-    Button mDive;
-    private DatabaseReference mDatabase;
     private static final String REQUIRED = "Required";
+    Button mDive;
+    Ride.RideBuilder rideBuilder = new Ride.RideBuilder();
+    private DatabaseReference mDatabase;
     //needed fields
     private EditText mTextStart;
     private EditText mTextDestination;
@@ -38,7 +39,7 @@ public class DriverActivity extends BaseActivity {
     private EditText mTextCar;
     private EditText mTextLicensePlate;
     private EditText mTextMaxPassengers;
-    private EditText []  requiredFields= {
+    private EditText[] requiredFields = {
             mTextStart,
             mTextDestination,
             mTextDepartTime,
@@ -49,7 +50,7 @@ public class DriverActivity extends BaseActivity {
     //unneeded fields
     private EditText mTextNotes;
     private EditText[] nonRequiredFields = {
-        mTextNotes
+            mTextNotes
     };
 
     @Override
@@ -58,18 +59,19 @@ public class DriverActivity extends BaseActivity {
         setContentView(R.layout.activity_driver);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         this.setForm();
-        final Intent driverIntent = new Intent(this, DriverActivity.class);
+
         mDive.setOnClickListener(new View.OnClickListener() {
             //Check fields. do setError(REQUIRED);
 
             @Override
             public void onClick(View v) {
                 //Check fields for non empty info
-                if(!verifyFields()){
+                if (!verifyFields()) {
                     toggleEditing(true);//might not be needed
                     return;
                 }
-                toggleEditing(false);
+                //toggleEditing(false);
+                Log.d(getLocalClassName(), "ride into database");
                 Toast.makeText(DriverActivity.this, "Sending Information...", Toast.LENGTH_SHORT).show();
 
                 //Getting information
@@ -78,82 +80,68 @@ public class DriverActivity extends BaseActivity {
                         new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                User user = dataSnapshot.getValue(User.class);
-                                if(user == null){
-                                    Toast.makeText(DriverActivity.this, "Error:Could not find User", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
-                                    writeNewRider(userId,
-                                            mTextCar.toString(),
-                                            "color not supported",
-                                            "car make not supported",
-                                            mTextLicensePlate.toString(),
-                                            mTextNotes.toString(),
-                                    0L,//long timeDepart,
-                                    1L,//long timeCreated,
-                                    new Location("Provider"),//Location locDest,
-                                    new Location("Provider"));//Location locDepart);
+                                //User user = dataSnapshot.getValue(User.class);
+                                if (userId == null) {
+                                    Toast.makeText(DriverActivity.this, "Error: Could not find User", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    rideBuilder.setDriverId(userId).setCarModel(mTextCar.getText().toString())
+                                            .setCarColor("nocolor").setCarMake("nomake")
+                                            .setPlate(mTextLicensePlate.getText().toString())
+                                            .setNotes(mTextNotes.getText().toString())
+                                            .setTimeDepart(0L).setTimeCreated(1L)
+                                            .setLocDest(new Location("provider"))
+                                            .setLocDepart(new Location("Provider"));
+                                    writeNewRide();
                                 }
                             }
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
+                                Toast.makeText(DriverActivity.this, "Error: Canceled", Toast.LENGTH_SHORT).show();
                                 toggleEditing(true);
                             }
                         }
                 );
-
-
             }
         });
     }
 
-    private void writeNewRider(String driverId,
-                               String carModel,
-                               String carColor,
-                               String carMake,
-                               String plate,
-                               String notes,
-                               long timeDepart,
-                               long timeCreated,
-                               Location locDest,
-                               Location locDepart){
+    private void writeNewRide() {
         //Transfer all data to the field
         String key = mDatabase.child("rides").push().getKey();
-        Ride ride = new Ride(driverId,carModel, carColor, carMake, plate, notes, timeDepart, timeCreated, locDest, locDepart);
+        Ride ride = rideBuilder.build();
         Map<String, Object> rideMap = ride.toMap();
-        Map<String,Object> childUpdates = new HashMap<>();
+        Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/rides/" + key, rideMap);
 
         mDatabase.updateChildren(childUpdates);
-    };
+    }
 
-    private void setForm(){
-        mDive =                 (Button) findViewById(R.id.buttonDive);
+    private void setForm() {
+        mDive = (Button) findViewById(R.id.buttonDive);
 
-        mTextStart =         (EditText) findViewById(R.id.editTextStart);
-        mTextDestination =   (EditText) findViewById(R.id.editTextDestination);
-        mTextDepartTime =    (EditText) findViewById(R.id.editTextDepartTime);
-        mTextCar =           (EditText) findViewById(R.id.editTextCar);
-        mTextLicensePlate =  (EditText) findViewById(R.id.editTextLicensePlate);
+        mTextStart = (EditText) findViewById(R.id.editTextStart);
+        mTextDestination = (EditText) findViewById(R.id.editTextDestination);
+        mTextDepartTime = (EditText) findViewById(R.id.editTextDepartTime);
+        mTextCar = (EditText) findViewById(R.id.editTextCar);
+        mTextLicensePlate = (EditText) findViewById(R.id.editTextLicensePlate);
         mTextMaxPassengers = (EditText) findViewById(R.id.editTextMaxPassengers);
-        mTextNotes =         (EditText) findViewById(R.id.editTextNotes);
+        mTextNotes = (EditText) findViewById(R.id.editTextNotes);
 
     }
 
-    private void toggleEditing(boolean setting){
-        for(EditText field: requiredFields){
+    private void toggleEditing(boolean setting) {
+        for (EditText field : requiredFields) {
             field.setEnabled(setting);
         }
-        for(EditText field : nonRequiredFields){
+        for (EditText field : nonRequiredFields) {
             field.setEnabled(setting);
         }
         mDive.setEnabled(setting);
     }
 
-    private boolean verifyFields(){
-        return true;
-      /*
+    private boolean verifyFields() {
+        return true;/*
         boolean validFields = true;
         for(EditText requiredField : requiredFields){
             String text = requiredField.getText().toString();
