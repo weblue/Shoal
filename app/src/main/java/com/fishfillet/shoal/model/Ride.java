@@ -14,7 +14,7 @@ public class Ride {
 
     private String driverId, carModel, carColor, carMake, plate, notes;
     private long timeDepart, timeCreated;
-    private Location locDest, locDepart;
+    private Location locStart, locDest;
 
     public Ride(
             String driverId,
@@ -25,8 +25,8 @@ public class Ride {
             String notes,
             long timeDepart,
             long timeCreated,
-            Location locDest,
-            Location locDepart) {
+            Location locStart,
+            Location locDest) {
 
         this.driverId = driverId;
         this.carModel = carModel;
@@ -37,7 +37,7 @@ public class Ride {
         this.timeDepart = timeDepart;
         this.timeCreated = timeCreated;
         this.locDest = locDest;
-        this.locDepart = locDepart;
+        this.locStart = locStart;
 
     }
 
@@ -113,12 +113,12 @@ public class Ride {
         this.locDest = locDest;
     }
 
-    public Location getLocDepart() {
-        return locDepart;
+    public Location getLocStart() {
+        return locStart;
     }
 
-    public void setLocDepart(Location locDepart) {
-        this.locDepart = locDepart;
+    public void setLocStart(Location locStart) {
+        this.locStart = locStart;
     }
 
     public static class RideBuilder {
@@ -199,7 +199,7 @@ public class Ride {
         result.put("timedepart", this.timeDepart);
         result.put("timecreated", this.timeCreated);
         result.put("locdest", this.locDest);
-        result.put("locdepart", this.locDepart);
+        result.put("locdepart", this.locStart);
 
         return result;
     }
