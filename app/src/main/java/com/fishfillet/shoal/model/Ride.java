@@ -1,20 +1,23 @@
-package com.fishfillet.shoal;
+package com.fishfillet.shoal.model;
 
 import android.location.Location;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by nader on 11/7/16.
  *
  */
 
-public class RideModel {
+public class Ride {
 
-    private String driver, carModel, carColor, carMake, plate, notes;
+    private String driverId, carModel, carColor, carMake, plate, notes;
     private long timeDepart, timeCreated;
     private Location locDest, locDepart;
 
-    private RideModel(
-            String driver,
+    public Ride(
+            String driverId,
             String carModel,
             String carColor,
             String carMake,
@@ -25,7 +28,7 @@ public class RideModel {
             Location locDest,
             Location locDepart) {
 
-        this.driver = driver;
+        this.driverId = driverId;
         this.carModel = carModel;
         this.carColor = carColor;
         this.carMake = carMake;
@@ -39,11 +42,11 @@ public class RideModel {
     }
 
     public String getDriver() {
-        return driver;
+        return driverId;
     }
 
-    public void setDriver(String driver) {
-        this.driver = driver;
+    public void setDriver(String driverId) {
+        this.driverId = driverId;
     }
 
     public String getCarModel() {
@@ -120,7 +123,7 @@ public class RideModel {
 
     public static class RideBuilder {
 
-        private String driver, carModel, carColor, carMake, plate, notes;
+        private String driverId, carModel, carColor, carMake, plate, notes;
         private long timeDepart, timeCreated;
         private Location locDest, locDepart;
 
@@ -128,13 +131,13 @@ public class RideModel {
 
         }
 
-        public RideBuilder setDriver(String driver) {
-            this.driver = driver;
+        public RideBuilder setDriver(String driverId) {
+            this.driverId = driverId;
             return this;
         }
 
-        public RideModel build() {
-            return new RideModel(driver, carModel, carColor, carMake, plate, notes, timeDepart,
+        public Ride build() {
+            return new Ride(driverId, carModel, carColor, carMake, plate, notes, timeDepart,
                     timeCreated, locDest, locDepart);
         }
 
@@ -182,5 +185,22 @@ public class RideModel {
             this.locDepart = locDepart;
             return this;
         }
+    }
+
+    public Map<String,Object> toMap(){
+        HashMap<String,Object> result = new HashMap<String, Object>();
+
+        result.put("driverid", this.driverId);
+        result.put("carmodel", this.carModel);
+        result.put("carcolor", this.carColor);
+        result.put("carmake", this.carMake);
+        result.put("plate", this.plate);
+        result.put("notes",this.notes);
+        result.put("timedepart", this.timeDepart);
+        result.put("timecreated", this.timeCreated);
+        result.put("locdest", this.locDest);
+        result.put("locdepart", this.locDepart);
+
+        return result;
     }
 }
