@@ -141,7 +141,8 @@ public class DriverActivity extends BaseActivity {
     }
 
     private boolean verifyFields() {
-        return true;/*
+        return true;
+        /*
         boolean validFields = true;
         for(EditText requiredField : requiredFields){
             String text = requiredField.getText().toString();
