@@ -10,39 +10,44 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <include
-            android:id="@+id/post_author_layout"
-            android:layout="@layout/include_post_author"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true" />
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/tv_dest"
+            android:textSize="20sp"
+            android:text="Kroger"
+            android:layout_alignParentLeft="true"/>
 
         <LinearLayout
             android:id="@+id/star_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/post_author_layout"
+            android:layout_alignBottom="@+id/tv_departTime"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/post_author_layout"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/post_num_stars"
+                android:id="@+id/tv_rideDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                tools:text="7" />
+                tools:text="Pickup: 0.1 miles" />
 
         </LinearLayout>
 
-        <include layout="@layout/include_post_text"
+        <TextView
+            android:id="@+id/tv_departTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/post_author_layout"
+            android:layout_below="@+id/tv_dest"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp" />
+            tools:text="Leaves at 10:10 am"/>
+
 
     </RelativeLayout>
 
