@@ -7,125 +7,66 @@ import java.util.Map;
 
 /**
  * Created by nader on 11/7/16.
- *
  */
 
 public class Ride {
 
-    private String driverId, carModel, carColor, carMake, plate, notes;
-    private long timeDepart, timeCreated;
-    private Location locStart, locDest;
+    public String driverid, carmodel, carcolor, carmake, caryear, plate, notes;
+    public String timedepart, timecreated;
+    public String locstart, locdest;
+
+    public Ride() {
+    }
 
     public Ride(
-            String driverId,
+            String driverid,
             String carModel,
             String carColor,
             String carMake,
+            String carYear,
             String plate,
             String notes,
-            long timeDepart,
-            long timeCreated,
-            Location locStart,
-            Location locDest) {
+            String timeDepart,
+            String timeCreated,
+            String locStart,
+            String locDest) {
 
-        this.driverId = driverId;
-        this.carModel = carModel;
-        this.carColor = carColor;
-        this.carMake = carMake;
+        this.driverid = driverid;
+        this.carmodel = carModel;
+        this.carcolor = carColor;
+        this.carmake = carMake;
+        this.caryear = carYear;
         this.plate = plate;
         this.notes = notes;
-        this.timeDepart = timeDepart;
-        this.timeCreated = timeCreated;
-        this.locDest = locDest;
-        this.locStart = locStart;
+        this.timedepart = timeDepart;
+        this.timecreated = timeCreated;
+        this.locdest = locDest;
+        this.locstart = locStart;
 
     }
 
-    public String getDriver() {
-        return driverId;
-    }
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<String, Object>();
 
-    public void setDriver(String driverId) {
-        this.driverId = driverId;
-    }
+        result.put("driverid", this.driverid);
+        result.put("carmodel", this.carmodel);
+        result.put("carcolor", this.carcolor);
+        result.put("carmake", this.carmake);
+        result.put("plate", this.plate);
+        result.put("notes", this.notes);
+        result.put("timedepart", this.timedepart);
+        result.put("timecreated", this.timecreated);
+        result.put("locdest", this.locdest);
+        result.put("locdepart", this.locstart);
 
-    public String getCarModel() {
-        return carModel;
-    }
-
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
-    }
-
-    public String getCarColor() {
-        return carColor;
-    }
-
-    public void setCarColor(String carColor) {
-        this.carColor = carColor;
-    }
-
-    public String getCarMake() {
-        return carMake;
-    }
-
-    public void setCarMake(String carMake) {
-        this.carMake = carMake;
-    }
-
-    public String getPlate() {
-        return plate;
-    }
-
-    public void setPlate(String plate) {
-        this.plate = plate;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public long getTimeCreated() {
-        return timeCreated;
-    }
-
-    public void setTimeCreated(long timeCreated) {
-        this.timeCreated = timeCreated;
-    }
-
-    public long getTimeDepart() {
-        return timeDepart;
-    }
-
-    public void setTimeDepart(long timeDepart) {
-        this.timeDepart = timeDepart;
-    }
-
-    public Location getLocDest() {
-        return locDest;
-    }
-
-    public void setLocDest(Location locDest) {
-        this.locDest = locDest;
-    }
-
-    public Location getLocStart() {
-        return locStart;
-    }
-
-    public void setLocStart(Location locStart) {
-        this.locStart = locStart;
+        return result;
     }
 
     public static class RideBuilder {
 
-        private String driverId, carModel, carColor, carMake, plate, notes;
-        private long timeDepart, timeCreated;
-        private Location locDest, locDepart;
+        private String driverId, carModel, carColor, carMake, carYear, plate, notes;
+        private String timeDepart, timeCreated;
+        private String locDest, locDepart;
 
         public RideBuilder() {
 
@@ -137,7 +78,7 @@ public class Ride {
         }
 
         public Ride build() {
-            return new Ride(driverId, carModel, carColor, carMake, plate, notes, timeDepart,
+            return new Ride(driverId, carModel, carColor, carMake, carYear, plate, notes, timeDepart,
                     timeCreated, locDest, locDepart);
         }
 
@@ -156,6 +97,11 @@ public class Ride {
             return this;
         }
 
+        public RideBuilder setCarYear(String carYear) {
+            this.carYear = carYear;
+            return this;
+        }
+
         public RideBuilder setPlate(String plate) {
             this.plate = plate;
             return this;
@@ -166,41 +112,24 @@ public class Ride {
             return this;
         }
 
-        public RideBuilder setTimeCreated(long timeCreated) {
+        public RideBuilder setTimeCreated(String timeCreated) {
             this.timeCreated = timeCreated;
             return this;
         }
 
-        public RideBuilder setTimeDepart(long timeDepart) {
+        public RideBuilder setTimeDepart(String timeDepart) {
             this.timeDepart = timeDepart;
             return this;
         }
 
-        public RideBuilder setLocDest(Location locDest) {
+        public RideBuilder setLocDest(String locDest) {
             this.locDest = locDest;
             return this;
         }
 
-        public RideBuilder setLocDepart(Location locDepart) {
+        public RideBuilder setLocDepart(String locDepart) {
             this.locDepart = locDepart;
             return this;
         }
-    }
-
-    public Map<String,Object> toMap(){
-        HashMap<String,Object> result = new HashMap<String, Object>();
-
-        result.put("driverid", this.driverId);
-        result.put("carmodel", this.carModel);
-        result.put("carcolor", this.carColor);
-        result.put("carmake", this.carMake);
-        result.put("plate", this.plate);
-        result.put("notes",this.notes);
-        result.put("timedepart", this.timeDepart);
-        result.put("timecreated", this.timeCreated);
-        result.put("locdest", this.locDest);
-        result.put("locdepart", this.locStart);
-
-        return result;
     }
 }

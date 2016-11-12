@@ -1,10 +1,8 @@
 package com.fishfillet.shoal;
 
-import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +10,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fishfillet.shoal.model.Ride;
-import com.fishfillet.shoal.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,16 +34,23 @@ public class DriverActivity extends BaseActivity {
     private EditText mTextStart;
     private EditText mTextDestination;
     private EditText mTextDepartTime;
-    private EditText mTextCar;
+    private EditText mTextModel;
     private EditText mTextLicensePlate;
     private EditText mTextMaxPassengers;
+    private EditText mTextYear;
+    private EditText mTextMake;
+    private EditText mTextColor;
+
     private EditText[] requiredFields = {
             mTextStart,
             mTextDestination,
             mTextDepartTime,
-            mTextCar,
+            mTextModel,
             mTextLicensePlate,
-            mTextMaxPassengers
+            mTextMaxPassengers,
+            mTextYear,
+            mTextMake,
+            mTextColor
     };
     //unneeded fields
     private EditText mTextNotes;
@@ -81,16 +86,21 @@ public class DriverActivity extends BaseActivity {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 //User user = dataSnapshot.getValue(User.class);
+                                Calendar cal = Calendar.getInstance();
+                                cal.setTimeInMillis(System.currentTimeMillis());
                                 if (userId == null) {
                                     Toast.makeText(DriverActivity.this, "Error: Could not find User", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    rideBuilder.setDriverId(userId).setCarModel(mTextCar.getText().toString())
-                                            .setCarColor("nocolor").setCarMake("nomake")
+                                    rideBuilder.setDriverId(userId).setCarModel(mTextModel.getText().toString())
+                                            .setCarColor(mTextColor.getText().toString())
+                                            .setCarMake(mTextMake.getText().toString())
+                                            .setCarYear(mTextYear.getText().toString())
                                             .setPlate(mTextLicensePlate.getText().toString())
                                             .setNotes(mTextNotes.getText().toString())
-                                            .setTimeDepart(0L).setTimeCreated(1L)
-                                            .setLocDest(new Location("provider"))
-                                            .setLocDepart(new Location("Provider"));
+                                            .setTimeDepart(mTextDepartTime.getText().toString())
+                                            .setTimeCreated(cal.getTime().toString())
+                                            .setLocDest(mTextDestination.getText().toString())
+                                            .setLocDepart(mTextStart.getText().toString());
                                     writeNewRide();
                                 }
                             }
@@ -109,10 +119,10 @@ public class DriverActivity extends BaseActivity {
     private void writeNewRide() {
         //Transfer all data to the field
         Ride ride = rideBuilder.build();
-        String key = mDatabase.child("rides").push().getKey();
+        //String key = mDatabase.child("rides").child(ride.getDriver()).push().getKey();
         Map<String, Object> rideMap = ride.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/rides/" + key, rideMap);
+        childUpdates.put("/rides/" + ride.driverid, rideMap);
 
         mDatabase.updateChildren(childUpdates);
     }
@@ -123,7 +133,10 @@ public class DriverActivity extends BaseActivity {
         mTextStart = (EditText) findViewById(R.id.editTextStart);
         mTextDestination = (EditText) findViewById(R.id.editTextDestination);
         mTextDepartTime = (EditText) findViewById(R.id.editTextDepartTime);
-        mTextCar = (EditText) findViewById(R.id.editTextCar);
+        mTextColor = (EditText) findViewById(R.id.editTextColor);
+        mTextYear = (EditText) findViewById(R.id.editTextYear);
+        mTextMake = (EditText) findViewById(R.id.editTextMake);
+        mTextModel = (EditText) findViewById(R.id.editTextModel);
         mTextLicensePlate = (EditText) findViewById(R.id.editTextLicensePlate);
         mTextMaxPassengers = (EditText) findViewById(R.id.editTextMaxPassengers);
         mTextNotes = (EditText) findViewById(R.id.editTextNotes);

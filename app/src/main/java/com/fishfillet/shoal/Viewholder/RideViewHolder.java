@@ -11,8 +11,8 @@ import com.fishfillet.shoal.model.Ride;
 
 public class RideViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView titleView;
-    public TextView authorView;
+    public TextView destinationView;
+    public TextView departView;
     public ImageView starView;
     public TextView numStarsView;
     public TextView bodyView;
@@ -20,19 +20,19 @@ public class RideViewHolder extends RecyclerView.ViewHolder {
     public RideViewHolder(View itemView) {
         super(itemView);
 
-        titleView = (TextView) itemView.findViewById(R.id.post_title);
-        authorView = (TextView) itemView.findViewById(R.id.post_author);
+        destinationView = (TextView) itemView.findViewById(R.id.destLoc);
+        departView = (TextView) itemView.findViewById(R.id.departTime);
         //starView = (ImageView) itemView.findViewById(R.id.star);
-        numStarsView = (TextView) itemView.findViewById(R.id.post_num_stars);
-        bodyView = (TextView) itemView.findViewById(R.id.post_body);
+        //numStarsView = (TextView) itemView.findViewById(R.id.post_num_stars);
+        //bodyView = (TextView) itemView.findViewById(R.id.post_body);
     }
 
-    public void bindToRide(Ride post, View.OnClickListener starClickListener) {
+    public void bindToRide(Ride ride) {
+        destinationView.setText(ride.locdest);
+        departView.setText("Leaves at " + ride.timedepart);
        // titleView.setText(post.title);
        // authorView.setText(post.author);
        // numStarsView.setText(String.valueOf(post.starCount));
         //bodyView.setText(post.body);
-
-        starView.setOnClickListener(starClickListener);
     }
 }

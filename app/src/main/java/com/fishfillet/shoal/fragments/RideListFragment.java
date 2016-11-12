@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public abstract class RideListFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d("fragment", "created");
 
         // Set up Layout Manager, reverse layout
         mManager = new LinearLayoutManager(getActivity());
@@ -60,9 +62,10 @@ public abstract class RideListFragment extends Fragment {
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
 
+        Log.d("fragment", "querying");
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
-        mAdapter = new FirebaseRecyclerAdapter<Ride, RideViewHolder>(Ride.class, R.layout.ride_post,
+        mAdapter = new FirebaseRecyclerAdapter<Ride, RideViewHolder>(Ride.class, R.layout.item_ride,
                 RideViewHolder.class, postsQuery) {
             @Override
             protected void populateViewHolder(final RideViewHolder viewHolder, final Ride model, final int position) {
@@ -70,7 +73,7 @@ public abstract class RideListFragment extends Fragment {
 
                 // Set click listener for the whole post view
                 final String postKey = postRef.getKey();
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                /*viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Launch RideDetailActivity
@@ -78,7 +81,7 @@ public abstract class RideListFragment extends Fragment {
                         intent.putExtra(RideDetailActivity.EXTRA_POST_KEY, postKey);
                         startActivity(intent);
                     }
-                });
+                });*/
 
                 // Determine if the current user has liked this post and set UI accordingly
                 // if (model.stars.containsKey(getUid())) {
@@ -88,18 +91,9 @@ public abstract class RideListFragment extends Fragment {
                 // }
 
                 // Bind Ride to ViewHolder, setting OnClickListener for the star button
-                viewHolder.bindToRide(model, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View starView) {
-                        // Need to write to both places the post is stored
-                        DatabaseReference globalRideRef = mDatabase.child("posts").child(postRef.getKey());
-                        DatabaseReference userRideRef = mDatabase.child("user-posts").child(getUid()).child(postRef.getKey());
-
-                        // Run two transactions
-                        //     onStarClicked(globalRideRef);
-                        //    onStarClicked(userRideRef);
-                    }
-                });
+                Log.d("fragment", "binding to ride");
+                viewHolder.bindToRide(model);
+                Log.d("fragment", "done binding");
             }
         };
         mRecycler.setAdapter(mAdapter);

@@ -66,15 +66,68 @@
 
             <TableLayout
                 android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:padding="16dp"
-                    android:id="@+id/editTextCar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Car model"
-                    tools:ignore="HardcodedText"/>
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextMake"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Car make"
+                        android:layout_weight=".5"
+                        tools:ignore="HardcodedText"/>
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextModel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Car model"
+                        android:layout_weight=".5"
+                        tools:ignore="HardcodedText"/>
+
+                </LinearLayout>
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Car color"
+                        android:layout_weight=".5"
+                        tools:ignore="HardcodedText"/>
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Car year"
+                        android:inputType="number"
+                        android:layout_weight=".5"
+                        tools:ignore="HardcodedText"/>
+
+                </LinearLayout>
 
             </TableLayout>
 
