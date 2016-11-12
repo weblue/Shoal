@@ -109,10 +109,10 @@ public class DriverActivity extends BaseActivity {
     private void writeNewRide() {
         //Transfer all data to the field
         Ride ride = rideBuilder.build();
-        String key = mDatabase.child("rides").child(ride.getDriver()).push().getKey();
+        String key = mDatabase.child("rides").push().getKey();
         Map<String, Object> rideMap = ride.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/rides/" + ride.getDriver() + "/" + key, rideMap);
+        childUpdates.put("/rides/" + key, rideMap);
 
         mDatabase.updateChildren(childUpdates);
     }
