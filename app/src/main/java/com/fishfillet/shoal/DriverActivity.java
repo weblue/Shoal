@@ -1,5 +1,6 @@
 package com.fishfillet.shoal;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fishfillet.shoal.fragments.WaitingScreenFragment;
 import com.fishfillet.shoal.model.Ride;
 import com.fishfillet.shoal.model.User;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +41,7 @@ public class DriverActivity extends BaseActivity {
     private EditText mTextCar;
     private EditText mTextLicensePlate;
     private EditText mTextMaxPassengers;
+    private Button mDiveIn;
     private EditText[] requiredFields = {
             mTextStart,
             mTextDestination,
@@ -102,6 +105,14 @@ public class DriverActivity extends BaseActivity {
                             }
                         }
                 );
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("passengers", Integer.parseInt(mTextMaxPassengers.getText().toString()));
+                bundle.putLong("time", Long.parseLong(mTextDepartTime.getText().toString()));
+
+                Fragment fragment = WaitingScreenFragment.newInstance(bundle);
+                getFragmentManager().beginTransaction().replace(R.id.container,
+                        fragment, WaitingScreenFragment.TAG).commit();
             }
         });
     }
