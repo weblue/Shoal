@@ -1,21 +1,12 @@
-package com.fishfillet.shoal.fragments;
+package com.fishfillet.shoal;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Fragment;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.fishfillet.shoal.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +16,7 @@ import java.util.Random;
  * Created by TravisNguyen on 11/9/16.
  */
 
-public class WaitingScreenFragment extends Fragment
+public class WaitingScreenActivity extends BaseActivity
 {
     private TextView mSeatsRemainingTextView;
     private TextView mDepartureTimeTextView;
@@ -37,20 +28,14 @@ public class WaitingScreenFragment extends Fragment
     private int mScreenWidth, mScreenHeight;
     private static final int mMaxDuration = 40000;
     private static final int mMinDuration = 25000;
+    private static String time;
+    private int passengers;
 
-    public WaitingScreenFragment() {
+    public WaitingScreenActivity() {
         //empty constructor
     }
 
-    public static WaitingScreenFragment newInstance(Bundle args)
-    {
-        WaitingScreenFragment fragment = new WaitingScreenFragment();
-        fragment.setArguments(args);
-
-        return fragment;
-    }
-
-    public static final String TAG = WaitingScreenFragment.class.getName();
+    public static final String TAG = WaitingScreenActivity.class.getName();
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -61,44 +46,46 @@ public class WaitingScreenFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.fragment_waiting_screen);
+
+        Bundle bundle = getIntent().getExtras();
+        time = bundle.getString("time");
+        passengers = bundle.getInt("passengers");
+
         DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mLogicalDensity = metrics.density;
         mScreenWidth = metrics.widthPixels;
         mScreenHeight = metrics.heightPixels;
 
-    }
+        //mSeatsRemainingTextView = (TextView)root.findViewById(R.id.seatsRemainingTextView);
+        //mSeatsRemainingTextView.setText(savedInstanceState.getInt("passengers"));
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-         View root = inflater.inflate(R.layout.fragment_waiting_screen, container, false);
+        mDepartureTimeTextView = (TextView)findViewById(R.id.departureTimeTextView);
+        mDepartureTimeTextView.setText("Leaving at " + time);
 
+        mSeatsRemainingTextView = (TextView) findViewById(R.id.seatsRemainingTextView);
+        mSeatsRemainingTextView.setText("x out of " + passengers + " passengers");
 
-        mSeatsRemainingTextView = (TextView)root.findViewById(R.id.seatsRemainingTextView);
-        mSeatsRemainingTextView.setText(savedInstanceState.getInt("passengers"));
+        mFishImage1 = (ImageView) findViewById(R.id.iv_onePassengers);
+        mFishImage2 = (ImageView) findViewById(R.id.iv_twoPassengers);
+        mFishImage3 = (ImageView) findViewById(R.id.iv_threePassengers);
+        mFishImage4 = (ImageView) findViewById(R.id.iv_fourPassengers);
+        mFishImage5 = (ImageView) findViewById(R.id.iv_fivePassengers);
+        mFishImage6 = (ImageView) findViewById(R.id.iv_sixPassengers);
 
-        mDepartureTimeTextView = (TextView)root.findViewById(R.id.departureTimeTextView);
-        mDepartureTimeTextView.setText(getDate(savedInstanceState.getLong("time")));
-
-        mFishImage1 = (ImageView) root.findViewById(R.id.iv_onePassengers);
-        mFishImage2 = (ImageView) root.findViewById(R.id.iv_twoPassengers);
-        mFishImage3 = (ImageView) root.findViewById(R.id.iv_threePassengers);
-        mFishImage4 = (ImageView) root.findViewById(R.id.iv_fourPassengers);
-        mFishImage5 = (ImageView) root.findViewById(R.id.iv_fivePassengers);
-        mFishImage6 = (ImageView) root.findViewById(R.id.iv_sixPassengers);
-
-        root.findViewById(android.R.id.content).post(new Runnable() {
-            @Override
-            public void run() {
-                startAnimation();
-
-            }
-        });
-        return root;
+//        root.findViewById(android.R.id.content).post(new Runnable() {
+//            @Override
+//            public void run() {
+//                startAnimation();
+//
+//            }
+//        });
 
     }
 
-    public static String getDate(long milliSeconds)
+    /*public static String getDate(long milliSeconds)
     {
         // Create a DateFormatter object for displaying date in specified format.
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
@@ -107,7 +94,7 @@ public class WaitingScreenFragment extends Fragment
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(milliSeconds);
         return formatter.format(calendar.getTime());
-    }
+    }*/
 
 
     /**

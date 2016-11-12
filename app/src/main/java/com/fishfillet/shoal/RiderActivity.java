@@ -1,5 +1,6 @@
 package com.fishfillet.shoal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -56,17 +57,17 @@ public class RiderActivity extends AppCompatActivity {
                 Log.d("adapter", "populate");
                 final DatabaseReference postRef = getRef(position);
 
-                // Set click listener for the whole post view TODO
-                /*final String postKey = postRef.getKey();
+                // Set click listener for the whole post view
+                final String postKey = postRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Launch RideDetailActivity
-                        Intent intent = new Intent(getActivity(), RideDetailActivity.class);
-                        intent.putExtra(RideDetailActivity.EXTRA_POST_KEY, postKey);
-                        startActivity(intent);
+//                        Intent intent = new Intent(this, RideDetailActivity.class);
+//                        intent.putExtra(RideDetailActivity.EXTRA_RIDE_KEY, postKey);
+//                        startActivity(intent);
                     }
-                });*/
+                });
 
                 // Bind Ride to ViewHolder, setting OnClickListener for the star button
                 viewHolder.bindToRide(model);
