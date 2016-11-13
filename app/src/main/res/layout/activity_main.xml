@@ -1,28 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.fishfillet.shoal.MainActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/activity_main"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context="com.fishfillet.shoal.MainActivity"
+              android:weightSum="1">
 
-    <Button
-        android:id="@+id/buttonDriver"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="@string/driver"
-        android:textAllCaps="false" />
+    <ImageView
+        android:id="@+id/iv_launchDrive"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/launch_drive_fish_text"
+        android:textAlignment="center"
+        android:layout_gravity="center"/>
 
-    <Button
-        android:id="@+id/buttonRider"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="@string/rider"
-        android:textAllCaps="false" />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_drive"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:text="Drive"-->
+        <!--android:textStyle="normal|bold"-->
+        <!--android:textAlignment="center"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:textSize="30sp"-->
+        <!--android:textColor="@color/driver_orange"/>-->
+
+    <ImageView
+        android:id="@+id/iv_launchPool"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/launch_pool_fish_text"
+        android:textAlignment="center"
+        android:layout_gravity="center"/>
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_pool"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:text="Pool"-->
+        <!--android:textStyle="normal|bold"-->
+        <!--android:textAlignment="center"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:textSize="30sp"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/buttonRider"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:text="@string/rider"-->
+        <!--android:textAllCaps="false" />-->
 </LinearLayout>

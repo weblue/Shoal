@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser mFirebaseUser;
     FirebaseAuth mFirebaseAuth;
 
-    Button mDriver;
-    Button mRider;
+    ImageView mDriver;
+    ImageView mRider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        mDriver = (Button) findViewById(R.id.buttonDriver);
+        mDriver = (ImageView) findViewById(R.id.iv_launchDrive);
         final Intent driverIntent = new Intent(this, DriverActivity.class);
         mDriver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mRider = (Button) findViewById(R.id.buttonRider);
+        mRider = (ImageView) findViewById(R.id.iv_launchPool);
         final Intent riderIntent = new Intent(this, RiderActivity.class);
         mRider.setOnClickListener(new View.OnClickListener() {
             @Override
