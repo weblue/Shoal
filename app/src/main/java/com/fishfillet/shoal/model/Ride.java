@@ -55,12 +55,13 @@ public class Ride {
         result.put("carmodel", this.carmodel);
         result.put("carcolor", this.carcolor);
         result.put("carmake", this.carmake);
+        result.put("caryear", this.caryear);
         result.put("plate", this.plate);
         result.put("notes", this.notes);
         result.put("timedepart", this.timedepart);
         result.put("timecreated", this.timecreated);
         result.put("locdest", this.locdest);
-        result.put("locdepart", this.locstart);
+        result.put("locstart", this.locstart);
         result.put("maxpassengers",this.maxpassengers);
 
         return result;
@@ -70,7 +71,7 @@ public class Ride {
 
         private String driverId, carModel, carColor, carMake, carYear, plate, notes;
         private String timeDepart, timeCreated;
-        private String locDest, locDepart;
+        private String locDest, locStart;
         private int maxPassengers;
 
         public RideBuilder() {
@@ -84,7 +85,7 @@ public class Ride {
 
         public Ride build() {
             return new Ride(driverId, carModel, carColor, carMake, carYear, plate, notes, timeDepart,
-                    timeCreated, locDest, locDepart, maxPassengers);
+                    timeCreated, locStart, locDest, maxPassengers);
         }
 
         public RideBuilder setCarModel(String carModel) {
@@ -132,8 +133,8 @@ public class Ride {
             return this;
         }
 
-        public RideBuilder setLocDepart(String locDepart) {
-            this.locDepart = locDepart;
+        public RideBuilder setLocStart(String locStart) {
+            this.locStart = locStart;
             return this;
         }
 
