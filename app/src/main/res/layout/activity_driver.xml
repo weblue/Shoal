@@ -60,8 +60,7 @@
                     android:id="@+id/editTextDepartTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Departure time"
-                    tools:ignore="HardcodedText"/>
+                    android:hint="Departure time"/>
 
             </TableLayout>
 
