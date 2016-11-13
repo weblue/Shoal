@@ -147,8 +147,10 @@ public class DriverActivity extends BaseActivity{
                 bundle.putString("time", mTextDepartTime.getText().toString());
 
                 i.putExtras(bundle);
+                if(verifyFields()){
+                    startActivity(i);
+                }
 
-                startActivity(i);
             }
         });
     }
