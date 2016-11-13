@@ -26,12 +26,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <TextView
                     android:padding="16dp"
                     android:id="@+id/editTextStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Start Location"
+                    android:text="Start Location: "
                     tools:ignore="HardcodedText"/>
 
             </TableLayout>
@@ -40,13 +40,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <TextView
                     android:padding="16dp"
                     android:id="@+id/editTextDestination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:hint="Destination"
+                    android:text="Destination: "
                     tools:ignore="HardcodedText"/>
 
             </TableLayout>
@@ -55,12 +55,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <TextView
                     android:padding="16dp"
                     android:id="@+id/editTextDepartTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Departure time"
+                    android:text="Departure time: "
                     tools:ignore="HardcodedText"/>
 
             </TableLayout>
@@ -77,20 +77,20 @@
                     android:orientation="horizontal"
                     android:weightSum="1">
 
-                    <EditText
+                    <TextView
                         android:padding="16dp"
                         android:id="@+id/editTextMake"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Car make"
+                        android:text="Car make: "
                         android:layout_weight=".5"
                         tools:ignore="HardcodedText"/>
-                    <EditText
+                    <TextView
                         android:padding="16dp"
                         android:id="@+id/editTextModel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Car model"
+                        android:text="Car model: "
                         android:layout_weight=".5"
                         tools:ignore="HardcodedText"/>
 
@@ -110,21 +110,20 @@
                     android:orientation="horizontal"
                     android:weightSum="1">
 
-                    <EditText
+                    <TextView
                         android:padding="16dp"
                         android:id="@+id/editTextColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Car color"
+                        android:text="Car color: "
                         android:layout_weight=".5"
                         tools:ignore="HardcodedText"/>
-                    <EditText
+                    <TextView
                         android:padding="16dp"
                         android:id="@+id/editTextYear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Car year"
-                        android:inputType="number"
+                        android:text="Car year: "
                         android:layout_weight=".5"
                         tools:ignore="HardcodedText"/>
 
@@ -136,12 +135,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <TextView
                     android:padding="16dp"
                     android:id="@+id/editTextLicensePlate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="License plate"
+                    android:text="License plate: "
                     tools:ignore="HardcodedText"/>
 
             </TableLayout>
@@ -150,13 +149,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <TextView
                     android:padding="16dp"
                     android:id="@+id/editTextMaxPassengers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Passengers availability"
-                    android:inputType="number"
+                    android:text="Passengers availability: "
                     tools:ignore="HardcodedText"/>
 
             </TableLayout>
@@ -166,12 +164,12 @@
                 android:layout_height="wrap_content">
 
 
-                <EditText
+                <TextView
                     android:padding="16dp"
                     android:id="@+id/editTextNotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Notes"
+                    android:text="Notes: "
                     tools:ignore="HardcodedText"/>
 
             </TableLayout>

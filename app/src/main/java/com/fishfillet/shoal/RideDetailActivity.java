@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.fishfillet.shoal.BaseActivity;
 import com.fishfillet.shoal.R;
@@ -24,17 +25,17 @@ public class RideDetailActivity  extends BaseActivity{
     Ride.RideBuilder rideBuilder = new Ride.RideBuilder();
     private DatabaseReference mDatabase;
     //needed fields
-    private EditText mTextStart;
-    private EditText mTextDestination;
-    private EditText mTextDepartTime;
-    private EditText mTextModel;
-    private EditText mTextLicensePlate;
-    private EditText mTextMaxPassengers;
+    private TextView mTextStart;
+    private TextView mTextDestination;
+    private TextView mTextDepartTime;
+    private TextView mTextModel;
+    private TextView mTextLicensePlate;
+    private TextView mTextMaxPassengers;
     private Button mDiveIn;
-    private EditText mTextYear;
-    private EditText mTextMake;
-    private EditText mTextColor;
-    private EditText mTextNotes;
+    private TextView mTextYear;
+    private TextView mTextMake;
+    private TextView mTextColor;
+    private TextView mTextNotes;
 
     int confirmColor = argb(255,0,255,0);
     int doneColor = argb(255,0,128,0);
@@ -69,30 +70,30 @@ public class RideDetailActivity  extends BaseActivity{
             }
         });
         Ride r = new Ride();
-        mTextStart.setText(r.locstart);
-        mTextDestination.setText(r.locdest);
-        mTextDepartTime.setText(r.timedepart);
-        mTextColor.setText(r.carcolor);
-        mTextYear.setText(r.caryear);
-        mTextMake.setText(r.carmake);
-        mTextModel.setText(r.carmodel);
-        mTextLicensePlate.setText(r.plate);
-        mTextMaxPassengers.setText(r.maxpassengers);
-        mTextNotes.setText(r.notes);
+        mTextStart.setText(mTextStart.getText().toString() + r.locstart);
+        mTextDestination.setText(mTextDestination.getText().toString() + r.locdest);
+        mTextDepartTime.setText(mTextDepartTime.getText().toString() + r.timedepart);
+        mTextColor.setText(mTextColor.getText().toString() + r.carcolor);
+        mTextYear.setText(mTextYear.getText().toString() + r.caryear);
+        mTextMake.setText(mTextMake.getText().toString() + r.carmake);
+        mTextModel.setText(mTextModel.getText().toString() + r.carmodel);
+        mTextLicensePlate.setText(mTextLicensePlate.getText().toString() + r.plate);
+        mTextMaxPassengers.setText(mTextMaxPassengers.getText().toString() + String.valueOf(r.maxpassengers));
+        mTextNotes.setText(mTextNotes.getText().toString() + r.notes);
     }
     public void setup(){
 
 
-        mTextStart = (EditText) findViewById(R.id.editTextStart);
-        mTextDestination = (EditText) findViewById(R.id.editTextDestination);
-        mTextDepartTime = (EditText) findViewById(R.id.editTextDepartTime);
-        mTextColor = (EditText) findViewById(R.id.editTextColor);
-        mTextYear = (EditText) findViewById(R.id.editTextYear);
-        mTextMake = (EditText) findViewById(R.id.editTextMake);
-        mTextModel = (EditText) findViewById(R.id.editTextModel);
-        mTextLicensePlate = (EditText) findViewById(R.id.editTextLicensePlate);
-        mTextMaxPassengers = (EditText) findViewById(R.id.editTextMaxPassengers);
-        mTextNotes = (EditText) findViewById(R.id.editTextNotes);
+        mTextStart = (TextView) findViewById(R.id.editTextStart);
+        mTextDestination = (TextView) findViewById(R.id.editTextDestination);
+        mTextDepartTime = (TextView) findViewById(R.id.editTextDepartTime);
+        mTextColor = (TextView) findViewById(R.id.editTextColor);
+        mTextYear = (TextView) findViewById(R.id.editTextYear);
+        mTextMake = (TextView) findViewById(R.id.editTextMake);
+        mTextModel = (TextView) findViewById(R.id.editTextModel);
+        mTextLicensePlate = (TextView) findViewById(R.id.editTextLicensePlate);
+        mTextMaxPassengers = (TextView) findViewById(R.id.editTextMaxPassengers);
+        mTextNotes = (TextView) findViewById(R.id.editTextNotes);
 
     }
 }

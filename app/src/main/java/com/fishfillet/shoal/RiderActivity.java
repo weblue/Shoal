@@ -50,6 +50,7 @@ public class RiderActivity extends AppCompatActivity {
 
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
+        final Intent detailIntent = new Intent(this, RideDetailActivity.class);
         mAdapter = new FirebaseRecyclerAdapter<Ride, RideViewHolder>(Ride.class, R.layout.item_ride,
                 RideViewHolder.class, postsQuery) {
             @Override
@@ -63,9 +64,8 @@ public class RiderActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         // Launch RideDetailActivity
-//                        Intent intent = new Intent(this, RideDetailActivity.class);
-//                        intent.putExtra(RideDetailActivity.EXTRA_RIDE_KEY, postKey);
-//                        startActivity(intent);
+                        //intent.putExtra(RideDetailActivity.EXTRA_RIDE_KEY, postKey);
+                        startActivity(detailIntent);
                     }
                 });
 

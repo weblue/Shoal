@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -59,11 +60,20 @@ public class WaitingScreenActivity extends BaseActivity
         mScreenWidth = metrics.widthPixels;
         mScreenHeight = metrics.heightPixels;
 
-        //mSeatsRemainingTextView = (TextView)root.findViewById(R.id.seatsRemainingTextView);
-        //mSeatsRemainingTextView.setText(savedInstanceState.getInt("passengers"));
-
         mDepartureTimeTextView = (TextView)findViewById(R.id.departureTimeTextView);
         mDepartureTimeTextView.setText("Leaving at " + time);
+
+        //TODO show a button to return to main screen after the timer is done
+        Calendar cal = Calendar.getInstance();
+        String[] timeSplit = time.split(":");
+        int hour = Integer.parseInt(timeSplit[0]);
+
+        String[] timeSplitSplit = time.split(" ");
+        if (timeSplitSplit[1].equals("pm"))
+            hour += 12;
+        //int min = Integer.parseInt(timeSplitSplit[0]);
+
+        //cal.set(cal.YEAR, cal.MONTH, cal.DATE, hour, min);
 
         mSeatsRemainingTextView = (TextView) findViewById(R.id.seatsRemainingTextView);
         mSeatsRemainingTextView.setText("x out of " + passengers + " passengers");

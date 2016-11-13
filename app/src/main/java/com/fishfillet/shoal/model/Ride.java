@@ -84,7 +84,7 @@ public class Ride {
 
         public Ride build() {
             return new Ride(driverId, carModel, carColor, carMake, carYear, plate, notes, timeDepart,
-                    timeCreated, locDest, locDepart,maxPassengers);
+                    timeCreated, locDest, locDepart, maxPassengers);
         }
 
         public RideBuilder setCarModel(String carModel) {
