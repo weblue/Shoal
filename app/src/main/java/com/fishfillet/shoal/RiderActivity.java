@@ -56,15 +56,18 @@ public class RiderActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(final RideViewHolder viewHolder, final Ride model, final int position) {
                 Log.d("adapter", "populate");
-                final DatabaseReference postRef = getRef(position);
+                final DatabaseReference rideRef = getRef(position);
 
                 // Set click listener for the whole post view
-                final String postKey = postRef.getKey();
+                final String rideKey = rideRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Launch RideDetailActivity
-                        //intent.putExtra(RideDetailActivity.EXTRA_RIDE_KEY, postKey);
+                        Bundle bundle = new Bundle();
+                        bundle.putString(RideDetailActivity.EXTRA_RIDE_KEY, rideKey);
+                        //detailIntent.putExtra(RideDetailActivity.EXTRA_RIDE_KEY, rideKey);
+                        detailIntent.putExtras(bundle);
                         startActivity(detailIntent);
                     }
                 });

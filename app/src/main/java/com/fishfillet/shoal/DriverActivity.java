@@ -128,7 +128,7 @@ public class DriverActivity extends BaseActivity{
                                             .setTimeDepart(mTextDepartTime.getText().toString())
                                             .setTimeCreated(cal.getTime().toString())
                                             .setLocDest(mTextDestination.getText().toString())
-                                            .setLocDepart(mTextStart.getText().toString())
+                                            .setLocStart(mTextStart.getText().toString())
                                             .setMaxPassengers(Integer.parseInt(mTextMaxPassengers.getText().toString()));
                                     writeNewRide();
                                 }
