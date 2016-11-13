@@ -3,6 +3,7 @@ package com.fishfillet.shoal;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import static android.graphics.Color.RGBToHSV;
@@ -24,7 +27,7 @@ import static android.graphics.Color.argb;
 /**
  * Created by Stephen on 11/12/2016.
  */
-
+//TODO: show how many seats are left.
 public class RideDetailActivity  extends BaseActivity{
 
     public static final String EXTRA_RIDE_KEY = "ride_key";
@@ -51,6 +54,7 @@ public class RideDetailActivity  extends BaseActivity{
     int startColor = argb(255,211,211,211);
     int confirmColor = argb(255,0,255,0);
     int doneColor = argb(255,0,128,0);
+    int fullColor = argb(255,128,0,0);
 
 
 
@@ -68,6 +72,12 @@ public class RideDetailActivity  extends BaseActivity{
     }
 
     private void setForm() {
+        //mRideKey = .getStringExtra("EXTRA_RIDE_KEY");
+        if(mRideKey == null){
+            throw new IllegalArgumentException("Must pass EXTRA_RIDE_KEY");
+        }
+        mRideRef = FirebaseDatabase.getInstance().getReference().child("rides").child(mRideKey);
+
         mJoin = (Button) findViewById(R.id.buttonJoin);
         mJoin.setBackgroundColor(startColor);
         mJoin.setOnClickListener(new View.OnClickListener() {
@@ -82,17 +92,14 @@ public class RideDetailActivity  extends BaseActivity{
                     mJoin.setText("Pool Joined");
                     mJoin.setBackgroundColor(doneColor);
                     //TODO: Inform Database
+                    onConfirmClick();
                 }
                 //Else do nothing
 
             }
         });
 
-        //mRideKey = .getStringExtra("EXTRA_RIDE_KEY");
-        if(mRideKey == null){
-            throw new IllegalArgumentException("Must pass EXTRA_RIDE_KEY");
-        }
-        mRideRef = FirebaseDatabase.getInstance().getReference().child("rides").child(mRideKey);
+
     }
 
     @Override
@@ -102,16 +109,16 @@ public class RideDetailActivity  extends BaseActivity{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Ride r = dataSnapshot.getValue(Ride.class);
-                mTextStart.setText(mTextStart.getText().toString() + r.locstart);
-                mTextDestination.setText(mTextDestination.getText().toString() + r.locdest);
-                mTextDepartTime.setText(mTextDepartTime.getText().toString() + r.timedepart);
-                mTextColor.setText(mTextColor.getText().toString() + r.carcolor);
-                mTextYear.setText(mTextYear.getText().toString() + r.caryear);
-                mTextMake.setText(mTextMake.getText().toString() + r.carmake);
-                mTextModel.setText(mTextModel.getText().toString() + r.carmodel);
-                mTextLicensePlate.setText(mTextLicensePlate.getText().toString() + r.plate);
-                mTextMaxPassengers.setText(mTextMaxPassengers.getText().toString() + String.valueOf(r.maxpassengers));
-                mTextNotes.setText(mTextNotes.getText().toString() + r.notes);
+                mTextStart.setText("Start Location: " + r.locstart);
+                mTextDestination.setText("Destination: " + r.locdest);
+                mTextDepartTime.setText("Departure time: " + r.timedepart);
+                mTextColor.setText("Car color: " + r.carcolor);
+                mTextYear.setText("Car year: " + r.caryear);
+                mTextMake.setText("Car make: " + r.carmake);
+                mTextModel.setText("Car model: " + r.carmodel);
+                mTextLicensePlate.setText("License plate: " + r.plate);
+                mTextMaxPassengers.setText("Spots Left: " + String.valueOf(r.passengersleft));
+                mTextNotes.setText("Notes: " + r.notes);
             }
 
             @Override
@@ -148,6 +155,35 @@ public class RideDetailActivity  extends BaseActivity{
         mTextLicensePlate = (TextView) findViewById(R.id.editTextLicensePlate);
         mTextMaxPassengers = (TextView) findViewById(R.id.editTextMaxPassengers);
         mTextNotes = (TextView) findViewById(R.id.editTextNotes);
+
+    }
+
+    public void onConfirmClick(){
+        mRideRef.runTransaction(new Transaction.Handler(){
+
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                Ride r = mutableData.getValue(Ride.class);
+                if(r == null){
+                    return Transaction.success(mutableData);
+                }
+                if(r.passengersleft > 0){
+                    r.passengersleft = r.passengersleft - 1;
+                    mutableData.setValue(r);
+                    return Transaction.success(mutableData);
+                }
+                else{
+                    mJoin.setText("Full Shoal");
+                    mJoin.setBackgroundColor(fullColor);
+                    return Transaction.abort();//Not sure if this is right :/
+                }
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                Log.d("Passenger added", "postTransaction:onComplete:" + databaseError);
+            }
+        });
 
     }
 }

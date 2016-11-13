@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Ride {
 
-    public int maxpassengers;
+    public int maxpassengers, passengersleft;
     public String driverid, carmodel, carcolor, carmake, caryear, plate, notes;
     public String timedepart, timecreated;
     public String locstart, locdest;
@@ -45,6 +45,7 @@ public class Ride {
         this.locdest = locDest;
         this.locstart = locStart;
         this.maxpassengers = maxpassengers;
+        this.passengersleft = maxpassengers;
 
     }
 
@@ -63,6 +64,7 @@ public class Ride {
         result.put("locdest", this.locdest);
         result.put("locstart", this.locstart);
         result.put("maxpassengers",this.maxpassengers);
+        result.put("passengersleft",this.passengersleft);
 
         return result;
     }
@@ -142,5 +144,6 @@ public class Ride {
             this.maxPassengers = maxPassengers;
             return this;
         }
+
     }
 }
