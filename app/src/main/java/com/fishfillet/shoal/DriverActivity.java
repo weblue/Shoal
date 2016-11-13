@@ -1,5 +1,6 @@
 package com.fishfillet.shoal;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.fishfillet.shoal.model.Ride;
@@ -26,7 +28,7 @@ import java.util.Map;
  */
 
 
-public class DriverActivity extends BaseActivity {
+public class DriverActivity extends BaseActivity{
     Button mDive;
     Ride.RideBuilder rideBuilder = new Ride.RideBuilder();
     private DatabaseReference mDatabase;
@@ -64,6 +66,30 @@ public class DriverActivity extends BaseActivity {
         setContentView(R.layout.activity_driver);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         this.setForm();
+
+        final EditText etTime = (EditText) findViewById(R.id.editTextDepartTime);
+
+        etTime.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(DriverActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        //TODO
+                        etTime.setText( selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
 
         final Intent i = new Intent(this, WaitingScreenActivity.class);
 
