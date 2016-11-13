@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class Ride {
 
+    public int maxpassengers;
     public String driverid, carmodel, carcolor, carmake, caryear, plate, notes;
     public String timedepart, timecreated;
     public String locstart, locdest;
@@ -29,7 +30,8 @@ public class Ride {
             String timeDepart,
             String timeCreated,
             String locStart,
-            String locDest) {
+            String locDest,
+            int maxpassengers) {
 
         this.driverid = driverid;
         this.carmodel = carModel;
@@ -42,6 +44,7 @@ public class Ride {
         this.timecreated = timeCreated;
         this.locdest = locDest;
         this.locstart = locStart;
+        this.maxpassengers = maxpassengers;
 
     }
 
@@ -58,6 +61,7 @@ public class Ride {
         result.put("timecreated", this.timecreated);
         result.put("locdest", this.locdest);
         result.put("locdepart", this.locstart);
+        result.put("maxpassengers",this.maxpassengers);
 
         return result;
     }
@@ -67,6 +71,7 @@ public class Ride {
         private String driverId, carModel, carColor, carMake, carYear, plate, notes;
         private String timeDepart, timeCreated;
         private String locDest, locDepart;
+        private int maxPassengers;
 
         public RideBuilder() {
 
@@ -79,7 +84,7 @@ public class Ride {
 
         public Ride build() {
             return new Ride(driverId, carModel, carColor, carMake, carYear, plate, notes, timeDepart,
-                    timeCreated, locDest, locDepart);
+                    timeCreated, locDest, locDepart,maxPassengers);
         }
 
         public RideBuilder setCarModel(String carModel) {
@@ -129,6 +134,11 @@ public class Ride {
 
         public RideBuilder setLocDepart(String locDepart) {
             this.locDepart = locDepart;
+            return this;
+        }
+
+        public RideBuilder setMaxPassengers(int maxPassengers){
+            this.maxPassengers = maxPassengers;
             return this;
         }
     }
