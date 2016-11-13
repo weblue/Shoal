@@ -25,6 +25,7 @@ public class WaitingScreenActivity extends BaseActivity
     ///Fish animation
     private Random mRandom = new Random();
     private ImageView mFishImage1, mFishImage2, mFishImage3, mFishImage4, mFishImage5, mFishImage6;
+    private ArrayList<ImageView> fishList;
     private float mLogicalDensity;
     private int mScreenWidth, mScreenHeight;
     private static final int mMaxDuration = 40000;
@@ -85,6 +86,16 @@ public class WaitingScreenActivity extends BaseActivity
         mFishImage5 = (ImageView) findViewById(R.id.iv_fivePassengers);
         mFishImage6 = (ImageView) findViewById(R.id.iv_sixPassengers);
 
+        this.fishList = new ArrayList<ImageView>();
+        this.fishList.add(mFishImage1);
+        this.fishList.add(mFishImage2);
+        this.fishList.add(mFishImage3);
+        this.fishList.add(mFishImage4);
+        this.fishList.add(mFishImage5);
+        this.fishList.add(mFishImage6);
+
+
+
 //        root.findViewById(android.R.id.content).post(new Runnable() {
 //            @Override
 //            public void run() {
@@ -114,35 +125,39 @@ public class WaitingScreenActivity extends BaseActivity
     public void startAnimation() {
 
         stopAllAnimation();
-
-        mFishImage1.setVisibility(View.VISIBLE);
-        mFishImage2.setVisibility(View.VISIBLE);
-        mFishImage3.setVisibility(View.VISIBLE);
-        mFishImage4.setVisibility(View.VISIBLE);
-        mFishImage5.setVisibility(View.VISIBLE);
-        mFishImage6.setVisibility(View.VISIBLE);
-
-        List<ImageView> fishes = new ArrayList<>();
-        fishes.add(mFishImage1);
-        fishes.add(mFishImage2);
-        fishes.add(mFishImage3);
-        fishes.add(mFishImage4);
-        fishes.add(mFishImage5);
-        fishes.add(mFishImage6);
+        int xPost = -475;
+        int xDif = 250;
+        float ybase = 200;
+        float ydiff = 200;
+        int up = 1;
+        fishList.get(0).setVisibility(View.VISIBLE);
+        fishList.get(0).setX(xPost);
+        fishList.get(0).setY(ybase);
+        xPost += xDif + 75;
+        for(int i = 1; i <= passengers; i++){
+            ImageView fish = fishList.get(i);
+            fish.setVisibility(View.VISIBLE);
+            fish.setX(xPost);
+            fish.setY(ybase + up * ydiff);
+            xPost += xDif;
+            up = -1 * up;
+           //TODO:set listners to go to profiles
+            // startAltFishAnimation(fish, 3);
+        }
 
         final int CAPACITY = 4; // how many germs to allow at one time
 
-        for (int i = 0; i <= CAPACITY; i++) {
+        /*for (int i = 0; i <= CAPACITY; i++) {
             int r = mRandom.nextInt(fishes.size());
 
             startAltFishAnimation(fishes.get(r), 3);
             fishes.remove(r);
-        }
+        }*/
 
-        while (!fishes.isEmpty()) {
+        /*while (!fishes.isEmpty()) {
             startAltFishAnimation(fishes.get(0), 7500);
             fishes.remove(0);
-        }
+        }*/
     }
 
     private int dpToPixels(float dp) {
@@ -157,8 +172,8 @@ public class WaitingScreenActivity extends BaseActivity
      * @param delay slightly variated delay till animation start; must be >= 3
      */
     private void startAltFishAnimation(ImageView view, int delay) {
-
-        float xStart = dpToPixels(-140);
+        return;
+        /*float xStart = dpToPixels(-140);
         float xEnd = mScreenWidth;
         float yStart = dpToPixels(-140);
         float yEnd = mScreenHeight;
@@ -197,7 +212,7 @@ public class WaitingScreenActivity extends BaseActivity
         moveHorizontal.setDuration(mRandom.nextInt(mMaxDuration - mMinDuration) + mMinDuration);
         moveVertical.setDuration(mRandom.nextInt(mMaxDuration - mMinDuration) + mMinDuration);
         moveHorizontal.start();
-        moveVertical.start();
+        moveVertical.start();*/
     }
 
     private void stopAllAnimation() {
