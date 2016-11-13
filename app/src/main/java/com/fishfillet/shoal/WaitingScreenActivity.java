@@ -69,8 +69,8 @@ public class WaitingScreenActivity extends BaseActivity
         int hour = Integer.parseInt(timeSplit[0]);
 
         String[] timeSplitSplit = time.split(" ");
-        if (timeSplitSplit[1].equals("pm"))
-            hour += 12;
+        //if (timeSplitSplit[0].equals("pm"))
+         //   hour += 12;
         //int min = Integer.parseInt(timeSplitSplit[0]);
 
         //cal.set(cal.YEAR, cal.MONTH, cal.DATE, hour, min);

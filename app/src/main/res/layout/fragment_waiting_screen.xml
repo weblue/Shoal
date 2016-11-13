@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/colorAccent"
+              android:background="#4286f4"
               android:weightSum="1">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_marginTop="100dp"
         android:text="Departure time: 00:00 am"
         android:textAlignment="center"
-        android:textColor="@color/wallet_holo_blue_light"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="normal|bold"
         android:typeface="normal"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:text="x seats remaining..."
         android:textAlignment="center"
-        android:textColor="@color/wallet_holo_blue_light"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:layout_marginTop="50dp"
         android:textStyle="normal|bold"
