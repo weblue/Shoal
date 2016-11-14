@@ -55,6 +55,7 @@
             </TableLayout>
 
             <TableLayout
+                android:id="@+id/layoutDepart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -63,6 +64,8 @@
                     android:id="@+id/editTextDepartTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:editable="false"
                     android:hint="Departure time"/>
 
             </TableLayout>
