@@ -32,78 +32,46 @@
         android:id="@+id/seatsRemainingTextView"
         tools:ignore="HardcodedText"/>
 
-        <ImageView
-            android:id="@+id/iv_fivePassengers"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_action_account_circle_40"
-            tools:ignore="RtlHardcoded"/>
+    <ImageView
+        android:id="@+id/iv_onePassengers"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/red_fish"/>
 
-        <ImageView
-            android:id="@+id/iv_fourPassengers"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_action_account_circle_40"
-            tools:ignore="RtlHardcoded"/>
+    <ImageView
+        android:id="@+id/iv_twoPassengers"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/blue_fish"/>
 
-        <ImageView
-            android:id="@+id/iv_sixPassengers"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_action_account_circle_40"
-            tools:ignore="RtlHardcoded"
-            android:layout_marginRight="10dp"
-            android:layout_alignTop="@+id/iv_fivePassengers"
-            android:layout_alignStart="@+id/iv_fivePassengers"
-            android:layout_marginStart="64dp"/>
+    <ImageView
+        android:id="@+id/iv_threePassengers"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/blue_fish"/>
 
-        <ImageView
-            android:id="@+id/iv_onePassengers"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_action_account_circle_40"
-            tools:ignore="RtlHardcoded"
-            android:layout_marginRight="10dp"
-            android:layout_alignTop="@+id/iv_sixPassengers"
-            android:layout_toEndOf="@+id/iv_fivePassengers"
-            android:layout_marginStart="40dp"/>
+    <ImageView
+        android:id="@+id/iv_fourPassengers"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/blue_fish"/>
 
-        <ImageView
-            android:id="@+id/iv_twoPassengers"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_action_account_circle_40"
-            tools:ignore="RtlHardcoded"
-            android:layout_marginRight="10dp"
-            android:layout_alignTop="@+id/iv_fullPassengers"
-            android:layout_alignStart="@+id/iv_fivePassengers"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="10dp"/>
+    <ImageView
+        android:id="@+id/iv_fivePassengers"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/blue_fish"/>
 
-        <ImageView
-            android:id="@+id/iv_threePassengers"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_action_account_circle_40"
-            tools:ignore="RtlHardcoded"
-            android:layout_marginRight="10dp"
-            android:layout_alignTop="@+id/iv_twoPassengers"
-            android:layout_alignEnd="@+id/iv_onePassengers"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="10dp"/>
+    <ImageView
+        android:id="@+id/iv_sixPassengers"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/blue_fish"/>
 
 </FrameLayout>
