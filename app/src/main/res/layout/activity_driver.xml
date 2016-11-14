@@ -184,11 +184,12 @@
                 android:id="@+id/buttonDive"
                 android:text="Dive in"
                 android:textAllCaps="false"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:textAlignment="center"
                 android:layout_gravity="center"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                android:textColor="@color/driver_orange"/>
 
         </LinearLayout>
 
