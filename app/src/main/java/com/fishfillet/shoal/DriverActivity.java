@@ -24,11 +24,10 @@ import java.util.Map;
 
 /**
  * Created by nader on 11/7/16.
- *
  */
 
 
-public class DriverActivity extends BaseActivity{
+public class DriverActivity extends BaseActivity {
     Button mDive;
     Ride.RideBuilder rideBuilder = new Ride.RideBuilder();
     private DatabaseReference mDatabase;
@@ -67,13 +66,31 @@ public class DriverActivity extends BaseActivity{
         mDatabase = FirebaseDatabase.getInstance().getReference();
         this.setForm();
 
-        final EditText etTime = (EditText) findViewById(R.id.editTextDepartTime);
+        mTextDepartTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-        etTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Calendar mcurrentTime = Calendar.getInstance();
+                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                    int minute = mcurrentTime.get(Calendar.MINUTE);
+                    TimePickerDialog mTimePicker;
+                    mTimePicker = new TimePickerDialog(DriverActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                            mTextDepartTime.setText(selectedHour + ":" + selectedMinute);
+                        }
+                    }, hour, minute, true);//Yes 24 hour time
+                    mTimePicker.setTitle("Select Time");
+                    mTimePicker.show();
+                }
+            }
+        });
+
+        mTextDepartTime.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
@@ -81,8 +98,7 @@ public class DriverActivity extends BaseActivity{
                 mTimePicker = new TimePickerDialog(DriverActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        //TODO
-                        etTime.setText( selectedHour + ":" + selectedMinute);
+                        mTextDepartTime.setText(selectedHour + ":" + selectedMinute);
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -147,7 +163,7 @@ public class DriverActivity extends BaseActivity{
                 bundle.putString("time", mTextDepartTime.getText().toString());
 
                 i.putExtras(bundle);
-                if(verifyFields()){
+                if (verifyFields()) {
                     startActivity(i);
                     finish();
                 }

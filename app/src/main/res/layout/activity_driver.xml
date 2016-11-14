@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:id="@+id/container"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-
-    >
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         tools:ignore="UselessParent">
 
         <LinearLayout
@@ -29,13 +27,13 @@
                 android:layout_height="wrap_content">
 
 
-                    <EditText
-                        android:padding="16dp"
-                        android:id="@+id/editTextStart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Start Location"
-                        tools:ignore="HardcodedText"/>
+                <EditText
+                    android:id="@+id/editTextStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Start Location"
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
 
             </TableLayout>
 
@@ -44,57 +42,61 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:padding="16dp"
                     android:id="@+id/editTextDestination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:hint="Destination"
-                    tools:ignore="HardcodedText"/>
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
 
             </TableLayout>
 
             <TableLayout
+                android:id="@+id/layoutDepart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:padding="16dp"
                     android:id="@+id/editTextDepartTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Departure time"/>
+                    android:editable="false"
+                    android:hint="Departure time"
+                    android:inputType="none"
+                    android:padding="16dp" />
 
             </TableLayout>
 
             <TableLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_height="wrap_content">
+                android:weightSum="1">
 
                 <LinearLayout
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <EditText
-                        android:padding="16dp"
                         android:id="@+id/editTextMake"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Car make"
                         android:layout_weight=".5"
-                        tools:ignore="HardcodedText"/>
-                    <EditText
+                        android:hint="Car make"
                         android:padding="16dp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
                         android:id="@+id/editTextModel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Car model"
                         android:layout_weight=".5"
-                        tools:ignore="HardcodedText"/>
+                        android:hint="Car model"
+                        android:padding="16dp"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
@@ -102,33 +104,34 @@
 
             <TableLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_height="wrap_content">
+                android:weightSum="1">
 
                 <LinearLayout
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <EditText
-                        android:padding="16dp"
                         android:id="@+id/editTextColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Car color"
                         android:layout_weight=".5"
-                        tools:ignore="HardcodedText"/>
-                    <EditText
+                        android:hint="Car color"
                         android:padding="16dp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
                         android:id="@+id/editTextYear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".5"
                         android:hint="Car year"
                         android:inputType="number"
-                        android:layout_weight=".5"
-                        tools:ignore="HardcodedText"/>
+                        android:padding="16dp"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
@@ -139,12 +142,12 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:padding="16dp"
                     android:id="@+id/editTextLicensePlate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="License plate"
-                    tools:ignore="HardcodedText"/>
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
 
             </TableLayout>
 
@@ -153,13 +156,13 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:padding="16dp"
                     android:id="@+id/editTextMaxPassengers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Passengers availability"
                     android:inputType="number"
-                    tools:ignore="HardcodedText"/>
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
 
             </TableLayout>
 
@@ -169,29 +172,29 @@
 
 
                 <EditText
-                    android:padding="16dp"
                     android:id="@+id/editTextNotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Notes"
-                    tools:ignore="HardcodedText"/>
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
 
             </TableLayout>
 
 
             <Button
-                android:padding="12dp"
                 android:id="@+id/buttonDive"
-                android:text="Dive in"
-                android:textAllCaps="false"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:textSize="20sp"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                tools:ignore="HardcodedText"
                 android:backgroundTint="@color/driver_fish"
-                android:textColor="@android:color/white"/>
+                android:padding="12dp"
+                android:text="Dive in"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 

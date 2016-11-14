@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#4286f4"
-              android:weightSum="1">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4286f4"
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <TextView
+        android:id="@+id/departureTimeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -16,62 +17,71 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="normal|bold"
-        android:typeface="normal"
-        android:id="@+id/departureTimeTextView" />
+        android:typeface="normal" />
 
     <TextView
+        android:id="@+id/seatsRemainingTextView"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="x seats remaining..."
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:layout_marginTop="50dp"
         android:textStyle="normal|bold"
         android:typeface="normal"
-        android:layout_height="wrap_content"
-        android:id="@+id/seatsRemainingTextView"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/iv_onePassengers"
-        android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/red_fish"/>
+        android:layout_gravity="center"
+        android:src="@drawable/red_fish" />
 
     <ImageView
         android:id="@+id/iv_twoPassengers"
-        android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/blue_fish"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/blue_fish"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/iv_threePassengers"
-        android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/blue_fish"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/blue_fish"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/iv_fourPassengers"
-        android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/blue_fish"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="110dp"
+        android:src="@drawable/blue_fish"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/iv_fivePassengers"
-        android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/blue_fish"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/blue_fish"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/iv_sixPassengers"
-        android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/blue_fish"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/blue_fish"
+        android:visibility="invisible" />
 
 </FrameLayout>
