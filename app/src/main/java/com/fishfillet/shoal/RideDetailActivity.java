@@ -88,10 +88,12 @@ public class RideDetailActivity  extends BaseActivity{
                 if(text.contains("Join Pool")){
                     mJoin.setText("Confirm");
                     mJoin.getBackground().setColorFilter(confirmColor, PorterDuff.Mode.DARKEN);
+                    Toast.makeText(RideDetailActivity.this, "Press Again to confirm", Toast.LENGTH_SHORT).show();
                 }
                 else if(text.contains("Confirm")){
                     mJoin.setText("Pool Joined");
                     mJoin.getBackground().setColorFilter(doneColor, PorterDuff.Mode.DARKEN);
+                    Toast.makeText(RideDetailActivity.this, "Succesfully Joined Ride", Toast.LENGTH_SHORT).show();
                     //TODO: Inform Database
                     onConfirmClick();
                 }
@@ -172,6 +174,7 @@ public class RideDetailActivity  extends BaseActivity{
                     r.passengersleft = r.passengersleft - 1;
                     mutableData.setValue(r);
                     return Transaction.success(mutableData);
+
                 }
                 else{
                     mJoin.setText("Full Shoal");

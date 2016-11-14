@@ -147,6 +147,8 @@ public class DriverActivity extends BaseActivity {
                                             .setLocStart(mTextStart.getText().toString())
                                             .setMaxPassengers(Integer.parseInt(mTextMaxPassengers.getText().toString()));
                                     writeNewRide();
+
+                                    Toast.makeText(DriverActivity.this, "Ride Created, moving to waiting screen.", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
