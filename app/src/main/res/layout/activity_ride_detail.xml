@@ -176,15 +176,18 @@
 
 
             <Button
-                android:padding="16dp"
+                android:padding="12dp"
                 android:id="@+id/buttonJoin"
                 android:text="Join Pool"
                 android:textAllCaps="false"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
+                android:textSize="20sp"
                 android:textAlignment="center"
                 android:layout_gravity="center"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@android:color/white"/>
 
         </LinearLayout>
 
