@@ -19,6 +19,7 @@ import java.util.Random;
 public class WaitingScreenActivity extends BaseActivity {
     private static final int mMaxDuration = 40000;
     private static final int mMinDuration = 25000;
+    private static final int mMaxFish = 6;
     private static String time;
     private TextView mSeatsRemainingTextView;
     private TextView mDepartureTimeTextView;
@@ -80,13 +81,7 @@ public class WaitingScreenActivity extends BaseActivity {
         mFishImage5 = (ImageView) findViewById(R.id.iv_fivePassengers);
         mFishImage6 = (ImageView) findViewById(R.id.iv_sixPassengers);
 
-        this.fishList = new ArrayList<ImageView>();
-        this.fishList.add(mFishImage1);
-        this.fishList.add(mFishImage2);
-        this.fishList.add(mFishImage3);
-        this.fishList.add(mFishImage4);
-        this.fishList.add(mFishImage5);
-        this.fishList.add(mFishImage6);
+        buildFishList();
 
 
 //        root.findViewById(android.R.id.content).post(new Runnable() {
@@ -119,27 +114,21 @@ public class WaitingScreenActivity extends BaseActivity {
 
         stopAllAnimation();
 
-        List<ImageView> fishes = new ArrayList<>();
-        fishes.add(mFishImage1);
-        fishes.add(mFishImage2);
-        fishes.add(mFishImage3);
-        fishes.add(mFishImage4);
-        fishes.add(mFishImage5);
-        fishes.add(mFishImage6);
 
-        final int CAPACITY = 2; // how many germs to allow at one time
 
+        final int CAPACITY = Math.min(passengers,mMaxFish - 1); // how many germs to allow at one time
+        //fishList = (ArrayList<ImageView>)fishList.subList(0,passengers);
         for (int i = 0; i <= CAPACITY; i++) {
-            int r = mRandom.nextInt(fishes.size());
+            int r = mRandom.nextInt(fishList.size());
 
-            startAltFishAnimation(fishes.get(r), 3);
-            fishes.remove(r);
+            startAltFishAnimation(fishList.get(r), 3);
+            fishList.remove(r);
         }
 
-        while (!fishes.isEmpty()) {
-            startAltFishAnimation(fishes.get(0), 7500);
-            fishes.remove(0);
-        }
+       // while (!fishList.isEmpty()) {
+        //    startAltFishAnimation(fishList.get(0), 7500);
+        //    fishList.remove(0);
+        //}
 
     }
 
@@ -191,6 +180,21 @@ public class WaitingScreenActivity extends BaseActivity {
         image.animate().cancel();
         image.setAnimation(null);
         image.animate().setListener(null);
+    }
+
+    private void buildFishList(){
+
+        this.fishList = new ArrayList<ImageView>();
+        this.fishList.add(mFishImage1);
+        this.fishList.add(mFishImage2);
+        this.fishList.add(mFishImage3);
+        this.fishList.add(mFishImage4);
+        this.fishList.add(mFishImage5);
+        this.fishList.add(mFishImage6);
+
+        for(int j = 5; j > passengers; j--){
+            this.fishList.remove(j);
+        }
     }
 
     @Override

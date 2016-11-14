@@ -1,6 +1,7 @@
 package com.fishfillet.shoal;
 
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -86,11 +87,11 @@ public class RideDetailActivity  extends BaseActivity{
                 String text = mJoin.getText().toString();
                 if(text.contains("Join Pool")){
                     mJoin.setText("Confirm");
-                    mJoin.setBackgroundColor(confirmColor);
+                    mJoin.getBackground().setColorFilter(confirmColor, PorterDuff.Mode.DARKEN);
                 }
                 else if(text.contains("Confirm")){
                     mJoin.setText("Pool Joined");
-                    mJoin.setBackgroundColor(doneColor);
+                    mJoin.getBackground().setColorFilter(doneColor, PorterDuff.Mode.DARKEN);
                     //TODO: Inform Database
                     onConfirmClick();
                 }
@@ -174,7 +175,7 @@ public class RideDetailActivity  extends BaseActivity{
                 }
                 else{
                     mJoin.setText("Full Shoal");
-                    mJoin.setBackgroundColor(fullColor);
+                    mJoin.getBackground().setColorFilter(fullColor, PorterDuff.Mode.DARKEN);
                     return Transaction.abort();//Not sure if this is right :/
                 }
             }
