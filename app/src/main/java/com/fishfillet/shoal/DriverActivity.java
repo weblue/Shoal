@@ -149,6 +149,7 @@ public class DriverActivity extends BaseActivity{
                 i.putExtras(bundle);
                 if(verifyFields()){
                     startActivity(i);
+                    finish();
                 }
 
             }
