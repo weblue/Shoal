@@ -1,5 +1,6 @@
 package com.fishfillet.shoal;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -52,6 +53,9 @@ public class RideDetailActivity  extends BaseActivity{
     private TextView mTextColor;
     private TextView mTextNotes;
 
+    private String time;
+    private int passengers;
+
     int startColor = argb(255,211,211,211);
     int confirmColor = argb(255,0,255,0);
     int doneColor = argb(255,0,128,0);
@@ -96,6 +100,11 @@ public class RideDetailActivity  extends BaseActivity{
                     Toast.makeText(RideDetailActivity.this, "Succesfully Joined Ride", Toast.LENGTH_SHORT).show();
                     //TODO: Inform Database
                     onConfirmClick();
+
+                    Intent intent = new Intent(RideDetailActivity.this, WaitingScreenActivity.class);
+                    intent.putExtra("time", time);
+                    intent.putExtra("passengers", passengers);
+                    startActivity(intent);
                 }
                 //Else do nothing
 
@@ -122,6 +131,9 @@ public class RideDetailActivity  extends BaseActivity{
                 mTextLicensePlate.setText("License plate: " + r.plate);
                 mTextMaxPassengers.setText("Spots Left: " + String.valueOf(r.passengersleft));
                 mTextNotes.setText("Notes: " + r.notes);
+
+                time = r.timedepart;
+                passengers = r.passengersleft;
             }
 
             @Override

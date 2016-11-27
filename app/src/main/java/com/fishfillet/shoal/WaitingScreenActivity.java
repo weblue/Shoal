@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,9 +45,12 @@ public class WaitingScreenActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.e("WaitingScreenActivity", "Activity started");
+
         setContentView(R.layout.fragment_waiting_screen);
 
         Bundle bundle = getIntent().getExtras();
+        Log.e("asdf", bundle.toString());
         time = bundle.getString("time");
         passengers = bundle.getInt("passengers");
 
