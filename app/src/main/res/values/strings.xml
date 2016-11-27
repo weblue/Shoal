@@ -2,4 +2,28 @@
     <string name="app_name">Shoal</string>
     <string name="driver"><![CDATA[< Driver]]></string>
     <string name="rider"><![CDATA[Rider >]]></string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="enter_your_email_hint">Enter your VT email</string>
+    <string name="enter_your_password_hint">Enter your password</string>
+    <string name="btn_reset_password">Reset</string>
+    <string name="btn_back">Back</string>
+
+    <string name="login_text_id">Email address</string>
+    <string name="login_text_pw">Password</string>
+    <string name="login_btn">Sign In</string>
+    <string name="signup_btn">Sign Up</string>
+    <string name="forgotpw_btn">Forgot password</string>
+    <string name="title_activity_intro">Intro</string>
 </resources>
