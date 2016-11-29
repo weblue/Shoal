@@ -1,7 +1,9 @@
 package com.fishfillet.shoal;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -41,6 +43,8 @@ public class DriverActivity extends BaseActivity {
     private EditText mTextYear;
     private EditText mTextMake;
     private EditText mTextColor;
+
+    private SharedPreferences mSharedPref;
 
     private EditText[] requiredFields = {
             mTextStart,
@@ -106,6 +110,15 @@ public class DriverActivity extends BaseActivity {
 
             }
         });
+
+        mSharedPref = getSharedPreferences("com.fishfillet.shoal.car ", Context.MODE_PRIVATE);
+
+        String defaultValue = "";
+
+        mTextColor.setText(mSharedPref.getString("color", defaultValue));
+        mTextMake.setText(mSharedPref.getString("make", defaultValue));
+        mTextYear.setText(mSharedPref.getString("year", defaultValue));
+        mTextLicensePlate.setText(mSharedPref.getString("plate", defaultValue));
 
         final Intent i = new Intent(this, WaitingScreenActivity.class);
 
@@ -181,6 +194,13 @@ public class DriverActivity extends BaseActivity {
         Map<String, Object> rideMap = ride.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/rides/" + ride.driverid, rideMap);
+
+        SharedPreferences.Editor editor = mSharedPref.edit();
+        editor.putString("color", mTextColor.getText().toString());
+        editor.putString("make", mTextMake.getText().toString());
+        editor.putString("year", mTextYear.getText().toString());
+        editor.putString("plate", mTextLicensePlate.getText().toString());
+        editor.apply();
 
         mDatabase.updateChildren(childUpdates);
     }
