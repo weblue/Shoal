@@ -92,6 +92,8 @@ public class LoginActivity extends AppCompatActivity{
         mProgress.show();
 
         final Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
 
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -100,6 +102,7 @@ public class LoginActivity extends AppCompatActivity{
                 if (task.isSuccessful()){
                     Toast.makeText(LoginActivity.this,"Successfully signed in", Toast.LENGTH_LONG).show();
                     startActivity(intent);
+                    finish();
                 }else{
                     Toast.makeText(LoginActivity.this,"There was an error....", Toast.LENGTH_LONG).show();
                 }
