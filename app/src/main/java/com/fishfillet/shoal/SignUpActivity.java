@@ -60,7 +60,6 @@ public class SignUpActivity extends MainActivity {
     private EditText editTextLastName;
     private EditText editTextAge;
     private Button buttonSignup;
-    private Button buttonAddCarInfo;
     private ProgressDialog progressDialog;
 
 
@@ -70,7 +69,6 @@ public class SignUpActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
-        buttonAddCarInfo = (Button) findViewById(R.id.buttonAddCarInfo);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextFirstName = (EditText) findViewById(R.id.editTextFirstName);
@@ -98,12 +96,6 @@ public class SignUpActivity extends MainActivity {
         //initializing firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
 
-        buttonAddCarInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addCarInfo();
-            }
-        });
         buttonSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,10 +104,6 @@ public class SignUpActivity extends MainActivity {
         });
     }
 
-
-    private void addCarInfo(){
-        return;
-    }
 
     private void registerUser() {
 

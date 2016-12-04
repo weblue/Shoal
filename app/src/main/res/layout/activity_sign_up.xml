@@ -14,11 +14,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_marginLeft="66dp"
-        android:layout_marginStart="66dp"
-        android:layout_alignParentTop="true">
+        android:layout_marginStart="64dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -51,16 +50,6 @@
             android:layout_margin="15dp"
             android:hint="Last name"
             android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/buttonAddCarInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Car Information"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="@android:color/white"
-            />
 
 
         <Button
