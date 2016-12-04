@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 /**
  * Created by TravisNguyen on 11/13/16.
  */
@@ -29,14 +32,18 @@ public class IntroActivity extends AppCompatActivity {
      * Starts MainActivity
      */
     private void startMainActivity() {
-        boolean isUserAuthenticated = false;
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
         Intent intent;
-        if (isUserAuthenticated) {
+        if (user != null) {
+            // User is signed in
             intent = new Intent(IntroActivity.this, MainActivity.class);
-        }
-        else {
+        } else {
+            // User is signed out
             intent = new Intent(IntroActivity.this, LoginActivity.class);
         }
+
         startActivity(intent);
         overridePendingTransition(R.anim.activity_start_enter, R.anim.activity_start_exit);
         finish();
