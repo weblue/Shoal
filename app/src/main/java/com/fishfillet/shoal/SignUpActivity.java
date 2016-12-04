@@ -173,7 +173,7 @@ public class SignUpActivity extends MainActivity {
 
                     String user_uid = firebaseAuth.getCurrentUser().getUid().toString();
 
-                    User u_info = new User(user_uid, first_name, last_name, email);
+                    User u_info = new User(user_uid, email, first_name, last_name);
                     //might need to push somehow.
                     mFirebaseDatabaseReference.child("user_info").push().setValue(u_info);
                     //Magic
