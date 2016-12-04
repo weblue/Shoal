@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class EditCarInfoActivity extends BaseActivity {
 
-    boolean firstTime = false;
+    String nextActivity = "";
     Car.CarBuilder carBuilder = new Car.CarBuilder();
 
     EditText editTextCarModel, editTextCarMake,editTextCarPlate,editTextCarYear,editTextCarColor;
@@ -62,7 +62,7 @@ public class EditCarInfoActivity extends BaseActivity {
         buttonFinish = (Button) findViewById(R.id.buttonFinishUserEdit);
 
         Bundle bundle = getIntent().getExtras();
-        firstTime = bundle.getBoolean("firstTime");
+        nextActivity = bundle.getString("nextActivity");
 
         progressDialog = new ProgressDialog(this);
         //name and email
@@ -81,7 +81,7 @@ public class EditCarInfoActivity extends BaseActivity {
                             .setYear(editTextCarYear.getText().toString())
                             .setPlate(editTextCarPlate.getText().toString());
                     writeNewCar();
-                    if(firstTime){
+                    if(nextActivity.equals("Main")) {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -92,6 +92,7 @@ public class EditCarInfoActivity extends BaseActivity {
                             }
                         }, 1000);
                     }
+                    //might need other cases
                     else{
                         finish();
                     }

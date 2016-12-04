@@ -203,7 +203,7 @@ public class SignUpActivity extends MainActivity {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(getApplicationContext(), EditCarInfoActivity.class);
-                            intent.putExtra("firstTime", true);
+                            intent.putExtra("nextActivity", "Main");
                             startActivity(intent);
                             finish();
                         }
