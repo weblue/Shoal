@@ -22,7 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
 import com.fishfillet.shoal.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -117,25 +117,25 @@ public class SignUpActivity extends MainActivity {
         //checking if email and passwords are empty
 
         if (TextUtils.isEmpty(first_name)) {
-            Toast.makeText(this, "Please enter first name", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content).getRootView(), "Please enter first name", Snackbar.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(last_name)) {
-            Toast.makeText(this, "Please enter last name", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content).getRootView(), "Please enter last name", Snackbar.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content).getRootView(), "Please enter email", Snackbar.LENGTH_LONG).show();
             return;
         }
         if(password.length() < 6){
-            Toast.makeText(this, "Passwords need to be at least 6 characters long", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content).getRootView(), "Passwords need to be at least 6 characters long", Snackbar.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content).getRootView(), "Please enter password", Snackbar.LENGTH_LONG).show();
             return;
         }
 
@@ -153,7 +153,7 @@ public class SignUpActivity extends MainActivity {
 
 
 //        if (age <= 12) {
-//            Toast.makeText(this, "Please enter a valid age", Toast.LENGTH_LONG).show();
+//            Snackbar.make(findViewById(android.R.id.content).getRootView(), "Please enter a valid age", Snackbar.LENGTH_LONG).show();
 //            return;
 //        }
 
@@ -169,7 +169,7 @@ public class SignUpActivity extends MainActivity {
 
                 if (task.isSuccessful()) {
                     //display some message here
-                    Toast.makeText(SignUpActivity.this, "Successfully registered " + firebaseAuth.getCurrentUser().getUid().toString(), Toast.LENGTH_LONG).show();
+                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Successfully registered " + firebaseAuth.getCurrentUser().getUid().toString(), Snackbar.LENGTH_LONG).show();
 
                     String user_uid = firebaseAuth.getCurrentUser().getUid().toString();
 
@@ -276,7 +276,7 @@ public class SignUpActivity extends MainActivity {
                 } else {
                     //display some message here
                     Exception e = task.getException();
-                    Toast.makeText(SignUpActivity.this, "Registration Error", Toast.LENGTH_LONG).show();
+                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Registration Error", Snackbar.LENGTH_LONG).show();
                     //Magic
                     AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(signupView.getContext());
                     alertdialogBuilder.setMessage("Registration Error");

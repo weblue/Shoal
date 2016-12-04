@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
 import com.fishfillet.shoal.BaseActivity;
 import com.fishfillet.shoal.R;
@@ -120,10 +120,7 @@ public class EditCarInfoActivity extends BaseActivity {
             if(TextUtils.isEmpty(field.getText().toString()));
             return false;
         }
-        if(TextUtils.isEmpty(editTextCarPlate.getText().toString())){
-            return false;
-        }
-        return true;
+        return !TextUtils.isEmpty(editTextCarPlate.getText().toString());
     }
 
     private void writeNewCar() {

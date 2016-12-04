@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
 import com.fishfillet.shoal.model.Ride;
 import com.google.firebase.database.DataSnapshot;
@@ -134,7 +135,7 @@ public class DriverActivity extends BaseActivity {
                 }
                 //toggleEditing(false);
                 Log.d(getLocalClassName(), "ride into database");
-                Toast.makeText(DriverActivity.this, "Sending Information...", Toast.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(android.R.id.content).getRootView(), "Sending Information...", Snackbar.LENGTH_SHORT).show();
 
                 //Getting information
                 final String userId = getUid();
@@ -146,7 +147,7 @@ public class DriverActivity extends BaseActivity {
                                 Calendar cal = Calendar.getInstance();
                                 cal.setTimeInMillis(System.currentTimeMillis());
                                 if (userId == null) {
-                                    Toast.makeText(DriverActivity.this, "Error: Could not find User", Toast.LENGTH_SHORT).show();
+                                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Error: Could not find User", Snackbar.LENGTH_SHORT).show();
                                 } else {
                                     rideBuilder.setDriverId(userId).setCarModel(mTextModel.getText().toString())
                                             .setCarColor(mTextColor.getText().toString())
@@ -161,13 +162,13 @@ public class DriverActivity extends BaseActivity {
                                             .setMaxPassengers(Integer.parseInt(mTextMaxPassengers.getText().toString()));
                                     writeNewRide();
 
-                                    Toast.makeText(DriverActivity.this, "Ride Created, moving to waiting screen.", Toast.LENGTH_SHORT).show();
+                                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Ride Created, moving to waiting screen.", Snackbar.LENGTH_SHORT).show();
                                 }
                             }
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-                                Toast.makeText(DriverActivity.this, "Error: Canceled", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(findViewById(android.R.id.content).getRootView(), "Error: Canceled", Snackbar.LENGTH_SHORT).show();
                                 toggleEditing(true);
                             }
                         }

@@ -5,12 +5,13 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
 import com.fishfillet.shoal.BaseActivity;
 import com.fishfillet.shoal.R;
@@ -92,12 +93,12 @@ public class RideDetailActivity  extends BaseActivity{
                 if(text.contains("Join Pool")){
                     mJoin.setText("Confirm");
                     mJoin.getBackground().setColorFilter(confirmColor, PorterDuff.Mode.DARKEN);
-                    Toast.makeText(RideDetailActivity.this, "Press Again to confirm", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Press Again to confirm", Snackbar.LENGTH_SHORT).show();
                 }
                 else if(text.contains("Confirm")){
                     mJoin.setText("Pool Joined");
                     mJoin.getBackground().setColorFilter(doneColor, PorterDuff.Mode.DARKEN);
-                    Toast.makeText(RideDetailActivity.this, "Succesfully Joined Ride", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Succesfully Joined Ride", Snackbar.LENGTH_SHORT).show();
                     //TODO: Inform Database
                     onConfirmClick();
 
@@ -138,7 +139,7 @@ public class RideDetailActivity  extends BaseActivity{
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(RideDetailActivity.this, "Failed to load ride.", Toast.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(android.R.id.content).getRootView(), "Failed to load ride.", Snackbar.LENGTH_SHORT).show();
             }
         };
         mRideRef.addValueEventListener(rideListener);

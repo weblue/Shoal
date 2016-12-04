@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -78,12 +78,12 @@ public class LoginActivity extends AppCompatActivity{
         String password = mPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)){
-            Toast.makeText(LoginActivity.this,"Please enter email", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content).getRootView(), "Please enter email", Snackbar.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)){
-            Toast.makeText(LoginActivity.this,"Please enter Password", Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content).getRootView(), "Please enter Password", Snackbar.LENGTH_LONG).show();
             return;
         }
 
@@ -100,11 +100,11 @@ public class LoginActivity extends AppCompatActivity{
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()){
-                    Toast.makeText(LoginActivity.this,"Successfully signed in", Toast.LENGTH_LONG).show();
+                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Successfully signed in", Snackbar.LENGTH_LONG).show();
                     startActivity(intent);
                     finish();
                 }else{
-                    Toast.makeText(LoginActivity.this,"There was an error....", Toast.LENGTH_LONG).show();
+                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "There was an error....", Snackbar.LENGTH_LONG).show();
                 }
 
             }

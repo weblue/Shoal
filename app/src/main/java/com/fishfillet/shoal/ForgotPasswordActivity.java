@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,7 +51,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 String email = inputEmail.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplication(), "Enter your VT email", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Enter your VT email", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 progressDialog.setMessage("Registering Please Wait...");
@@ -62,9 +62,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ForgotPasswordActivity.this, "Instructions sent to email to reset your password!", Toast.LENGTH_SHORT).show();
+                                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Instructions sent to email to reset your password!", Snackbar.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ForgotPasswordActivity.this, "Error: failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                    Snackbar.make(findViewById(android.R.id.content).getRootView(), "Error: failed to send reset email!", Snackbar.LENGTH_SHORT).show();
                                 }
                                 progressDialog.dismiss();
                             }
