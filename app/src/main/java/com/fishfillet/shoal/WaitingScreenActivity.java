@@ -200,7 +200,7 @@ public class WaitingScreenActivity extends NoUserActivity {
         //int corner = mRandom.nextInt(4) + 1; //select a random number 1 - 4
 
             xStart = mScreenWidth + dpToPixels(mRandom.nextInt(40) + 140);
-            xEnd = dpToPixels(-300);
+            xEnd = -500;
 
 
         ObjectAnimator moveHorizontal = ObjectAnimator.ofFloat(view, "translationX", xStart, xEnd);
