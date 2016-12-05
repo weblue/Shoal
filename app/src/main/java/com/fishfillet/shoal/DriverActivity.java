@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -70,6 +71,11 @@ public class DriverActivity extends BaseActivity {
         setContentView(R.layout.activity_driver);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         this.setForm();
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+        setSupportActionBar(myToolbar);
 
         mTextDepartTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 

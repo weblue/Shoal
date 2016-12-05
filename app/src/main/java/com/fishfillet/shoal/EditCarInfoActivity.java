@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.Layout;
 import android.text.TextUtils;
@@ -69,6 +70,11 @@ public class EditCarInfoActivity extends BaseActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //initializing firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+        setSupportActionBar(myToolbar);
 
         buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,7 @@ package com.fishfillet.shoal;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,7 +12,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     FirebaseUser mFirebaseUser;
     FirebaseAuth mFirebaseAuth;
@@ -35,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return;
         }
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+        setSupportActionBar(myToolbar);
 
         mDriver = (ImageView) findViewById(R.id.iv_launchDrive);
         final Intent driverIntent = new Intent(this, DriverActivity.class);

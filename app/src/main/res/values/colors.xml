@@ -5,6 +5,7 @@
     <color name="colorAccent">#4285f4</color>
     <color name="driver_orange">#ff9900</color>
     <color name="driver_fish">#D9625C</color>
+    <color name="colorWhite">#ffffff</color>
 
 
 </resources>

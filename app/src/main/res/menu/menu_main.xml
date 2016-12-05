@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.example.travisnguyen.myapplication.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="fish_logo"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/blue_fish"/>
+
+    <item android:id="@+id/action_your_profile"
+          android:title="Your profile"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/action_about_us"
+          android:title="About us"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/action_sign_out"
+          android:title="Sign out"
+          app:showAsAction="never"/>
+</menu>

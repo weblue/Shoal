@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
@@ -18,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 //missing r
 
-public class RiderActivity extends AppCompatActivity {
+public class RiderActivity extends BaseActivity {
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;
@@ -35,6 +36,11 @@ public class RiderActivity extends AppCompatActivity {
         Log.d("activity", "create");
 
         setContentView(R.layout.activity_rider);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+        setSupportActionBar(myToolbar);
 
         // [START create_database_reference]
         mDatabase = FirebaseDatabase.getInstance().getReference();
