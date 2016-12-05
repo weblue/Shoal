@@ -2,6 +2,9 @@ package com.fishfillet.shoal.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Stephen on 11/8/2016.
  */
@@ -59,4 +62,12 @@ public class User {
         this.first_name = first_name;
     }
 
+    public Map<String, Object> toMap(){
+        HashMap<String,Object> result = new HashMap<String, Object>();
+        result.put("username",username);
+        result.put("email",email);
+        result.put("first_name",first_name);
+        result.put("last_name",last_name);
+        return result;
+    }
 }

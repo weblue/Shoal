@@ -36,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Travis Nguyen on 11/27/2016.
@@ -61,7 +62,7 @@ public class SignUpActivity extends NoUserActivity {
     private EditText editTextAge;
     private Button buttonSignup;
     private ProgressDialog progressDialog;
-
+    private  DatabaseReference mUserRef;
 
 
     @Override
@@ -89,6 +90,7 @@ public class SignUpActivity extends NoUserActivity {
         popupWidth = size.x * 3 / 4;
         popupHeight = size.y/4;
         */
+       //
 
         progressDialog = new ProgressDialog(this);
         //name and email
@@ -176,6 +178,13 @@ public class SignUpActivity extends NoUserActivity {
                     User u_info = new User(user_uid, email, first_name, last_name);
                     //might need to push somehow.
                     mFirebaseDatabaseReference.child("user_info").push().setValue(u_info);
+
+                    mUserRef = FirebaseDatabase.getInstance().getReference().child("user_info").child(getUid());
+                    Map<String, Object> userMap = u_info.toMap();
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put("/user_info/" + user_uid, userMap);
+
+                    mFirebaseDatabaseReference.updateChildren(childUpdates);
                     //Magic
                     AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(signupView.getContext());
                     View layout = signupinflater.inflate(R.layout.activity_popup,null,false);

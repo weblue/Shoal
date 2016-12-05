@@ -25,6 +25,9 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.graphics.Color.RGBToHSV;
 import static android.graphics.Color.argb;
 
@@ -57,6 +60,7 @@ public class RideDetailActivity  extends BaseActivity{
 
     private String time;
     private int passengers;
+    private int maxPassengers;
 
     int startColor = argb(255,211,211,211);
     int confirmColor = argb(255,0,255,0);
@@ -103,10 +107,22 @@ public class RideDetailActivity  extends BaseActivity{
                     //TODO: Inform Database
                     onConfirmClick();
 
-                    Intent intent = new Intent(RideDetailActivity.this, WaitingScreenActivity.class);
-                    intent.putExtra("time", time);
-                    intent.putExtra("passengers", passengers);
-                    startActivity(intent);
+                    DatabaseReference passengersRef = mRideRef.child("riders");
+                    if(maxPassengers != passengers){
+                        Map<String, Object> riderUpdates = new HashMap<String, Object>();
+                        riderUpdates.put(getUid(), getUid());
+                        passengersRef.updateChildren(riderUpdates);
+
+
+
+                        Intent intent = new Intent(RideDetailActivity.this, WaitingScreenActivity.class);
+                        intent.putExtra("time", time);
+                        intent.putExtra("passengers",passengers);
+                        intent.putExtra("maxPassengers",mTextMaxPassengers.getText().toString());
+                        intent.putExtra("ride_key", mRideKey);
+                        startActivity(intent);
+                    }
+
                 }
                 //Else do nothing
 
@@ -136,6 +152,7 @@ public class RideDetailActivity  extends BaseActivity{
 
                 time = r.timedepart;
                 passengers = r.passengersleft;
+                maxPassengers = r.maxpassengers;
             }
 
             @Override

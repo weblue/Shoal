@@ -1,15 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:layout_weight="0.36" />
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/mTextFirstName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.74"
+                    android:hint="First Name"
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/mTextLastName"
+                    android:layout_width="93dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Last Name"
+                    android:inputType="number"
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText"
+                    android:layout_weight="0.30" />
+
+            </LinearLayout>
+
+        </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/mTextEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.74"
+                    android:hint="Email"
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
+
+
+            </LinearLayout>
+
+        </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/mTextMake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:hint="Car make"
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/mTextModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:hint="Car model"
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+        </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/mTextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.74"
+                    android:hint="Car color"
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/mTextYear"
+                    android:layout_width="93dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Car year"
+                    android:inputType="number"
+                    android:padding="16dp"
+                    tools:ignore="HardcodedText"
+                    android:layout_weight="0.30" />
+
+                <Button
+                    android:text="@string/help_button"
+                    android:layout_width="51dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/question_icon"
+                    android:id="@+id/driver_help_button" />
+
+            </LinearLayout>
+
+        </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/mTextLicensePlate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="License plate"
+                android:padding="16dp"
+                tools:ignore="HardcodedText" />
+
+        </TableLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -121,13 +121,14 @@ public class EditCarInfoActivity extends BaseActivity {
         ValueEventListener rideListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Car c = dataSnapshot.getValue(Car.class);;
-                editTextCarColor.setText(c.color);
-                editTextCarYear.setText(c.year);
-                editTextCarMake.setText(c.make);
-                editTextCarModel.setText(c.model);
-                editTextCarPlate.setText(c.plate);
-
+                Car c = dataSnapshot.getValue(Car.class);
+                if(c != null){
+                    editTextCarColor.setText(c.color);
+                    editTextCarYear.setText(c.year);
+                    editTextCarMake.setText(c.make);
+                    editTextCarModel.setText(c.model);
+                    editTextCarPlate.setText(c.plate);
+                }
             }
 
             @Override

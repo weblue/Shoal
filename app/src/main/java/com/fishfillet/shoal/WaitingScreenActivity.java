@@ -2,12 +2,19 @@ package com.fishfillet.shoal;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +31,17 @@ public class WaitingScreenActivity extends BaseActivity {
     private static String time;
     private TextView mSeatsRemainingTextView;
     private TextView mDepartureTimeTextView;
+    private String mRideKey;
     ///Fish animation
     private Random mRandom = new Random();
     private ImageView mFishImage1, mFishImage2, mFishImage3, mFishImage4, mFishImage5, mFishImage6;
     private ArrayList<ImageView> fishList;
+    private ArrayList<ImageView> swimmingFishList;
     private float mLogicalDensity;
     private int mScreenWidth, mScreenHeight;
-    private int passengers;
+    private int passengers, maxPassengers;
+
+    DatabaseReference mRiders;
 
     public WaitingScreenActivity() {
         //empty constructor
@@ -53,12 +64,54 @@ public class WaitingScreenActivity extends BaseActivity {
         Log.e("asdf", bundle.toString());
         time = bundle.getString("time");
         passengers = bundle.getInt("passengers");
+        maxPassengers = bundle.getInt("maxPassengers");
+        mRideKey = bundle.getString("ride_key");
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mLogicalDensity = metrics.density;
         mScreenWidth = metrics.widthPixels;
         mScreenHeight = metrics.heightPixels;
+
+        mSeatsRemainingTextView = (TextView) findViewById(R.id.seatsRemainingTextView);
+        mSeatsRemainingTextView.setText( passengers + " out of " + maxPassengers + " passengers");
+
+        mFishImage1 = (ImageView) findViewById(R.id.iv_onePassengers);
+        mFishImage2 = (ImageView) findViewById(R.id.iv_twoPassengers);
+        mFishImage3 = (ImageView) findViewById(R.id.iv_threePassengers);
+        mFishImage4 = (ImageView) findViewById(R.id.iv_fourPassengers);
+        mFishImage5 = (ImageView) findViewById(R.id.iv_fivePassengers);
+        mFishImage6 = (ImageView) findViewById(R.id.iv_sixPassengers);
+
+        swimmingFishList = new ArrayList<ImageView>();
+        buildFishList();
+
+
+        mRiders = FirebaseDatabase.getInstance().getReference().child("rides").child(mRideKey).child("riders");
+        mRiders.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int i = 0;
+                for(final DataSnapshot rider : dataSnapshot.getChildren()){
+                    if(i < swimmingFishList.size()){
+                        swimmingFishList.get(i).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(WaitingScreenActivity.this, UserProfileActivity.class);
+                                intent.putExtra("userId", rider.getKey());
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    i++;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mDepartureTimeTextView = (TextView) findViewById(R.id.departureTimeTextView);
         mDepartureTimeTextView.setText("Leaving at " + time);
@@ -75,17 +128,7 @@ public class WaitingScreenActivity extends BaseActivity {
 
         //cal.set(cal.YEAR, cal.MONTH, cal.DATE, hour, min);
 
-        mSeatsRemainingTextView = (TextView) findViewById(R.id.seatsRemainingTextView);
-        mSeatsRemainingTextView.setText("x out of " + passengers + " passengers");
 
-        mFishImage1 = (ImageView) findViewById(R.id.iv_onePassengers);
-        mFishImage2 = (ImageView) findViewById(R.id.iv_twoPassengers);
-        mFishImage3 = (ImageView) findViewById(R.id.iv_threePassengers);
-        mFishImage4 = (ImageView) findViewById(R.id.iv_fourPassengers);
-        mFishImage5 = (ImageView) findViewById(R.id.iv_fivePassengers);
-        mFishImage6 = (ImageView) findViewById(R.id.iv_sixPassengers);
-
-        buildFishList();
 
 
 //        root.findViewById(android.R.id.content).post(new Runnable() {
@@ -123,10 +166,10 @@ public class WaitingScreenActivity extends BaseActivity {
         final int CAPACITY = Math.min(passengers,mMaxFish - 1); // how many germs to allow at one time
         //fishList = (ArrayList<ImageView>)fishList.subList(0,passengers);
         for (int i = 0; i <= CAPACITY; i++) {
-            int r = mRandom.nextInt(fishList.size());
+            int r = mRandom.nextInt(Math.max(1,fishList.size()));
 
             startAltFishAnimation(fishList.get(r), 3);
-            fishList.remove(r);
+            swimmingFishList.add(fishList.remove(r));
         }
 
        // while (!fishList.isEmpty()) {
