@@ -48,7 +48,7 @@ public class Car {
         }
 
         public Car build() {
-            return new Car(model, color, make, year, plate, driverid);
+            return new Car(make, model, year, color, plate, driverid);
         }
 
         public CarBuilder setDriverId(String driverid) {
