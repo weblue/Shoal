@@ -77,6 +77,7 @@ public class DriverActivity extends BaseActivity {
         myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
         setSupportActionBar(myToolbar);
 
+
         mTextDepartTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override

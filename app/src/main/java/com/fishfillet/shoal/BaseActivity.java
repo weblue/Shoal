@@ -1,6 +1,7 @@
 package com.fishfillet.shoal;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -64,9 +65,24 @@ public class BaseActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_your_profile) {
+
+            Intent intent = new Intent(BaseActivity.this, YourProfileActivity.class);
+            startActivity(intent);
         }
+
+        else if (id == R.id.action_about_us) {
+
+            Intent intent = new Intent(BaseActivity.this, AboutActivity.class);
+            startActivity(intent);
+        }
+
+        else if (id == R.id.action_settings) {
+
+            Intent intent = new Intent(BaseActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
