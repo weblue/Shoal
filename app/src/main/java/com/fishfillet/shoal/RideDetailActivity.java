@@ -108,7 +108,7 @@ public class RideDetailActivity  extends BaseActivity{
                     onConfirmClick();
 
                     DatabaseReference passengersRef = mRideRef.child("riders");
-                    if(maxPassengers != passengers){
+                    //if(maxPassengers != passengers){
                         Map<String, Object> riderUpdates = new HashMap<String, Object>();
                         riderUpdates.put(getUid(), getUid());
                         passengersRef.updateChildren(riderUpdates);
@@ -121,7 +121,7 @@ public class RideDetailActivity  extends BaseActivity{
                         intent.putExtra("maxPassengers",mTextMaxPassengers.getText().toString());
                         intent.putExtra("ride_key", mRideKey);
                         startActivity(intent);
-                    }
+                   // }
 
                 }
                 //Else do nothing
