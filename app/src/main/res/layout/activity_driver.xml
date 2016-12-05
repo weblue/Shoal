@@ -146,7 +146,7 @@
                     <Button
                         android:layout_width="0dp"
                         android:layout_weight="0.25"
-                        android:layout_height="50dp"
+                        android:layout_height="35dp"
                         android:background="@drawable/edit_logo2"
                         android:id="@+id/driver_help_button" />
 
