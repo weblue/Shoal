@@ -24,7 +24,7 @@ import java.util.Random;
  * Created by TravisNguyen on 11/9/16.
  */
 
-public class WaitingScreenActivity extends BaseActivity {
+public class WaitingScreenActivity extends NoUserActivity {
     private static final int mMaxDuration = 40000;
     private static final int mMinDuration = 25000;
     private static final int mMaxFish = 6;
@@ -94,14 +94,14 @@ public class WaitingScreenActivity extends BaseActivity {
                 int i = 0;
                 for(final DataSnapshot rider : dataSnapshot.getChildren()){
                     if(i < swimmingFishList.size()){
-                        swimmingFishList.get(i).setOnClickListener(new View.OnClickListener() {
+                       /* swimmingFishList.get(i).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(WaitingScreenActivity.this, UserProfileActivity.class);
                                 intent.putExtra("userId", rider.getKey());
                                 startActivity(intent);
                             }
-                        });
+                        });*/
                     }
                     i++;
                 }
