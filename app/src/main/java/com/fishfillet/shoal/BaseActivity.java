@@ -82,7 +82,13 @@ public class BaseActivity extends AppCompatActivity {
             Intent intent = new Intent(BaseActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
+        else if(id == R.id.action_sign_out){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(BaseActivity.this, IntroActivity.class);
+            startActivity(intent);
+            finish();
 
+        }
 
         return super.onOptionsItemSelected(item);
     }

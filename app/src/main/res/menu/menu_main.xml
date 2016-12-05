@@ -14,7 +14,7 @@
           app:showAsAction="never"/>
 
     <item android:id="@+id/action_about_us"
-          android:title="About us"
+          android:title="About Shoal"
           app:showAsAction="never"/>
 
     <item android:id="@+id/action_sign_out"
