@@ -181,7 +181,8 @@ public class DriverActivity extends BaseActivity {
                 );
 
                 Bundle bundle = new Bundle();
-                bundle.putInt("passengers", Integer.parseInt(mTextMaxPassengers.getText().toString()));
+                bundle.putInt("passengers", 0);
+                bundle.putInt("maxPassengers",Integer.parseInt(mTextMaxPassengers.getText().toString()));
                 bundle.putString("time", mTextDepartTime.getText().toString());
 
                 i.putExtras(bundle);
