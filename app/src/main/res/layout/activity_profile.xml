@@ -33,7 +33,7 @@
                     android:id="@+id/mTextFirstName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.74"
+                    android:layout_weight=".45"
                     android:hint="First Name"
                     android:padding="16dp"
                     tools:ignore="HardcodedText" />
@@ -46,7 +46,7 @@
                     android:inputType="number"
                     android:padding="16dp"
                     tools:ignore="HardcodedText"
-                    android:layout_weight="0.30" />
+                    android:layout_weight=".5" />
 
             </LinearLayout>
 
@@ -67,7 +67,7 @@
                     android:id="@+id/mTextEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.74"
+                    android:layout_weight="0.5"
                     android:hint="Email"
                     android:padding="16dp"
                     tools:ignore="HardcodedText" />
@@ -92,7 +92,7 @@
                     android:id="@+id/mTextMake"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".5"
+                    android:layout_weight=".45"
                     android:hint="Car make"
                     android:padding="16dp"
                     tools:ignore="HardcodedText" />
@@ -125,7 +125,7 @@
                     android:id="@+id/mTextColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.74"
+                    android:layout_weight="0.45"
                     android:hint="Car color"
                     android:padding="16dp"
                     tools:ignore="HardcodedText" />
@@ -141,10 +141,10 @@
                     android:layout_weight="0.30" />
 
                 <Button
-                    android:text="@string/help_button"
-                    android:layout_width="51dp"
-                    android:layout_height="54dp"
-                    android:background="@drawable/question_icon"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.25"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_logo2"
                     android:id="@+id/driver_help_button" />
 
             </LinearLayout>
