@@ -127,7 +127,7 @@
                         android:id="@+id/editTextColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.74"
+                        android:layout_weight="0.45"
                         android:hint="Car color"
                         android:padding="16dp"
                         tools:ignore="HardcodedText" />
@@ -143,9 +143,9 @@
                         android:layout_weight="0.30" />
 
                     <Button
-                        android:text="@string/help_button"
-                        android:layout_width="51dp"
-                        android:layout_height="54dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.25"
+                        android:layout_height="50dp"
                         android:background="@drawable/question_icon"
                         android:id="@+id/driver_help_button" />
 
