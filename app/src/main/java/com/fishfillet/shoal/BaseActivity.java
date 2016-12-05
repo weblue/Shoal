@@ -67,8 +67,8 @@ public class BaseActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_your_profile) {
 
-            Intent intent = new Intent(BaseActivity.this, YourProfileActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(BaseActivity.this, YourProfileActivity.class);
+//            startActivity(intent);
         }
 
         else if (id == R.id.action_about_us) {
