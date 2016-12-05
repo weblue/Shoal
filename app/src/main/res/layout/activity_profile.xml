@@ -135,7 +135,6 @@
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
                     android:hint="Car year"
-                    android:inputType="number"
                     android:padding="16dp"
                     tools:ignore="HardcodedText"
                     android:layout_weight="0.30" />

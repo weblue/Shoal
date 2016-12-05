@@ -87,8 +87,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:hint="Enter year"
-                android:inputType="textEmailAddress" />
+                android:inputType="number"
+                android:hint="Enter year"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
