@@ -40,7 +40,7 @@ import java.util.HashMap;
 /**
  * Created by Travis Nguyen on 11/27/2016.
  */
-public class SignUpActivity extends MainActivity {
+public class SignUpActivity extends NoUserActivity {
 
     //Static methods needed to create the needed layout
     public static LayoutInflater signupinflater;
@@ -66,8 +66,8 @@ public class SignUpActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        super.onCreate(savedInstanceState);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);

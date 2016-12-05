@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by nader on 11/6/16.
  */
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends NoUserActivity{
     //UI controls
     private Button mSignin, mSignup, mForgotPassword;
     private EditText mEmail, mPassword;
@@ -32,9 +34,8 @@ public class LoginActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        super.onCreate(savedInstanceState);
         //UI components
         mSignin = (Button) findViewById(R.id.signin);
         mSignup = (Button) findViewById(R.id.signup);

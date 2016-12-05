@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by Travis Nguyen on 11/27/2016.
  */
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends NoUserActivity {
 
     private EditText inputEmail;
     private Button btnReset, btnBack;
@@ -28,8 +28,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+        super.onCreate(savedInstanceState);
 
         inputEmail = (EditText) findViewById(R.id.forgot_password_et_email);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
