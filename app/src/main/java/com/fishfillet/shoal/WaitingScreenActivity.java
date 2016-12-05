@@ -1,5 +1,7 @@
 package com.fishfillet.shoal;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
@@ -190,7 +192,7 @@ public class WaitingScreenActivity extends NoUserActivity {
      * @param view  the image view to animate
      * @param delay slightly variated delay till animation start; must be >= 3
      */
-    private void startAltFishAnimation(ImageView view, int delay) {
+    private void startAltFishAnimation(final ImageView view, int delay) {
 
         float xStart = dpToPixels(-140);
         float xEnd = mScreenWidth;
@@ -198,7 +200,7 @@ public class WaitingScreenActivity extends NoUserActivity {
         //int corner = mRandom.nextInt(4) + 1; //select a random number 1 - 4
 
             xStart = mScreenWidth + dpToPixels(mRandom.nextInt(40) + 140);
-            xEnd = dpToPixels(-300);
+            xEnd = -500;
 
 
         ObjectAnimator moveHorizontal = ObjectAnimator.ofFloat(view, "translationX", xStart, xEnd);
@@ -206,9 +208,22 @@ public class WaitingScreenActivity extends NoUserActivity {
         moveHorizontal.setRepeatCount(ValueAnimator.INFINITE);
         moveHorizontal.setStartDelay(mRandom.nextInt(delay / 3) + 2 * (delay / 3));
         moveHorizontal.setDuration(mRandom.nextInt(mMaxDuration - mMinDuration) + mMinDuration);
-        moveHorizontal.start();
 
-        view.setVisibility(View.VISIBLE);
+        view.animate().setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                view.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                view.setVisibility(View.GONE);
+            }
+        });
+
+        moveHorizontal.start();
     }
 
     private void stopAllAnimation() {

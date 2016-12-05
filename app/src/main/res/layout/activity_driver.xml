@@ -71,7 +71,6 @@
                     android:id="@+id/editTextDepartTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:editable="false"
                     android:hint="Departure time"
                     android:inputType="none"
                     android:padding="16dp" />
