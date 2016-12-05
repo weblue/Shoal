@@ -20,14 +20,18 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.support.design.widget.Snackbar;
+import android.widget.Toast;
 
 import com.fishfillet.shoal.BaseActivity;
 import com.fishfillet.shoal.R;
 import com.fishfillet.shoal.model.Car;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +55,9 @@ public class EditCarInfoActivity extends BaseActivity {
 
     private SharedPreferences mSharedPref;
 
+    DatabaseReference mCarRef;
+    private ValueEventListener mCarListener;
+
     public EditCarInfoActivity(){
     }
 
@@ -61,20 +68,21 @@ public class EditCarInfoActivity extends BaseActivity {
         mSharedPref = getSharedPreferences("com.fishfillet.shoal.car ", Context.MODE_PRIVATE);
         this.Setup();
         buttonFinish = (Button) findViewById(R.id.buttonFinishUserEdit);
+        mCarRef = FirebaseDatabase.getInstance().getReference().child("user_info").child(getUid()).child("car_info");
 
         Bundle bundle = getIntent().getExtras();
-        nextActivity = bundle.getString("nextActivity");
+        try{
+            nextActivity = bundle.getString("nextActivity");
+        }
+       catch(Exception e){
+           nextActivity = "Same";
+       }
 
         progressDialog = new ProgressDialog(this);
         //name and email
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //initializing firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
-        setSupportActionBar(myToolbar);
 
         buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +116,31 @@ public class EditCarInfoActivity extends BaseActivity {
 
     }
 
+    public void onStart(){
+        super.onStart();
+        ValueEventListener rideListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Car c = dataSnapshot.getValue(Car.class);;
+                editTextCarColor.setText(c.color);
+                editTextCarYear.setText(c.year);
+                editTextCarMake.setText(c.make);
+                editTextCarModel.setText(c.model);
+                editTextCarPlate.setText(c.plate);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(EditCarInfoActivity.this, "Failed to load car.", Toast.LENGTH_SHORT).show();
+            }
+        };
+        mCarRef.addValueEventListener(rideListener);
+
+        mCarListener = rideListener;
+
+    }
+
     private void Setup(){
         editTextCarPlate = (EditText) findViewById(R.id.editTextCarPlate);
         editTextCarMake = (EditText) findViewById(R.id.editTextCarMake);
@@ -136,14 +169,6 @@ public class EditCarInfoActivity extends BaseActivity {
         Map<String, Object> carMap = car.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/user_info/" + car.driverid + "/car_info/", carMap);
-
-        SharedPreferences.Editor editor = mSharedPref.edit();
-        editor.putString("color", editTextCarColor.getText().toString());
-        editor.putString("make", editTextCarMake.getText().toString());
-        editor.putString("model", editTextCarModel.getText().toString());
-        editor.putString("year", editTextCarYear.getText().toString());
-        editor.putString("plate", editTextCarPlate.getText().toString());
-        editor.apply();
 
         mDatabase.updateChildren(childUpdates);
     }
