@@ -5,16 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.support.design.widget.Snackbar;
+import android.widget.Toast;
 
+import com.fishfillet.shoal.model.Car;
 import com.fishfillet.shoal.model.Ride;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +36,9 @@ import java.util.Map;
 
 
 public class DriverActivity extends BaseActivity {
+    private static LayoutInflater driverinflater;
+    private static View driverView;
+
     Button mDive;
     Ride.RideBuilder rideBuilder = new Ride.RideBuilder();
     private DatabaseReference mDatabase;
@@ -46,7 +53,10 @@ public class DriverActivity extends BaseActivity {
     private EditText mTextMake;
     private EditText mTextColor;
 
-    private SharedPreferences mSharedPref;
+    private DatabaseReference mCarRef;
+    private ValueEventListener mCarListener;
+
+    private Button mHelpButton;
 
     private EditText[] requiredFields = {
             mTextStart,
@@ -67,15 +77,12 @@ public class DriverActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
+        super.onCreate(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        this.setForm();
+        mCarRef = FirebaseDatabase.getInstance().getReference().child("user_info").child(getUid()).child("car_info");
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
-        setSupportActionBar(myToolbar);
+        this.setForm();
 
 
         mTextDepartTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -119,14 +126,6 @@ public class DriverActivity extends BaseActivity {
             }
         });
 
-        mSharedPref = getSharedPreferences("com.fishfillet.shoal.car ", Context.MODE_PRIVATE);
-
-        String defaultValue = "";
-
-        mTextColor.setText(mSharedPref.getString("color", defaultValue));
-        mTextMake.setText(mSharedPref.getString("make", defaultValue));
-        mTextYear.setText(mSharedPref.getString("year", defaultValue));
-        mTextLicensePlate.setText(mSharedPref.getString("plate", defaultValue));
 
         final Intent i = new Intent(this, WaitingScreenActivity.class);
 
@@ -193,6 +192,70 @@ public class DriverActivity extends BaseActivity {
 
             }
         });
+        mHelpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(driverView.getContext());
+                View layout = driverinflater.inflate(R.layout.activity_car_help,null,false);
+                Button confirmButton = (Button)layout.findViewById(R.id.car_help_close_button);
+                Button editButton = (Button) layout.findViewById(R.id.car_help_edit_button);
+                alertdialogBuilder.setView(layout);
+                final AlertDialog helpdialog = alertdialogBuilder.create();
+                confirmButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        helpdialog.dismiss();
+                    }
+                });
+                editButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), EditCarInfoActivity.class);
+                        helpdialog.dismiss();
+                        startActivity(intent);
+                    }
+                });
+                helpdialog.show();
+            }
+        });
+    }
+
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        ValueEventListener rideListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Car c = dataSnapshot.getValue(Car.class);;
+                mTextColor.setText(c.color);
+                mTextYear.setText(c.year);
+                mTextMake.setText(c.make);
+                mTextModel.setText(c.model);
+                mTextLicensePlate.setText(c.plate);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(DriverActivity.this, "Failed to load car.", Toast.LENGTH_SHORT).show();
+            }
+        };
+        mCarRef.addValueEventListener(rideListener);
+
+        mCarListener = rideListener;
+
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+
+        if(mCarListener != null){
+            mCarRef.removeEventListener(mCarListener);
+        }
+
     }
 
     private void writeNewRide() {
@@ -203,18 +266,14 @@ public class DriverActivity extends BaseActivity {
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/rides/" + ride.driverid, rideMap);
 
-        SharedPreferences.Editor editor = mSharedPref.edit();
-        editor.putString("color", mTextColor.getText().toString());
-        editor.putString("make", mTextMake.getText().toString());
-        editor.putString("year", mTextYear.getText().toString());
-        editor.putString("plate", mTextLicensePlate.getText().toString());
-        editor.apply();
-
         mDatabase.updateChildren(childUpdates);
     }
 
     private void setForm() {
         mDive = (Button) findViewById(R.id.buttonDive);
+        mHelpButton = (Button) findViewById(R.id.driver_help_button);
+        driverinflater = getLayoutInflater();
+        driverView =this.findViewById(R.id.activity_driver);
 
         mTextStart = (EditText) findViewById(R.id.editTextStart);
         mTextDestination = (EditText) findViewById(R.id.editTextDestination);
@@ -241,15 +300,5 @@ public class DriverActivity extends BaseActivity {
 
     private boolean verifyFields() {
         return true;
-        /*
-        boolean validFields = true;
-        for(EditText requiredField : requiredFields){
-            String text = requiredField.getText().toString();
-            if(TextUtils.isEmpty(text)){
-                requiredField.setError(REQUIRED);
-                validFields = false;
-            }
-        }
-        return validFields;*/
     }
 }
