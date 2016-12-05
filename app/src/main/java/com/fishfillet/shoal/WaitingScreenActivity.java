@@ -76,7 +76,7 @@ public class WaitingScreenActivity extends NoUserActivity {
         mScreenHeight = metrics.heightPixels;
 
         mSeatsRemainingTextView = (TextView) findViewById(R.id.seatsRemainingTextView);
-        mSeatsRemainingTextView.setText( passengers + " out of " + maxPassengers + " passengers");
+        mSeatsRemainingTextView.setText( maxPassengers + " out of " + passengers + " passengers");
 
         mFishImage1 = (ImageView) findViewById(R.id.iv_onePassengers);
         mFishImage2 = (ImageView) findViewById(R.id.iv_twoPassengers);
@@ -89,7 +89,7 @@ public class WaitingScreenActivity extends NoUserActivity {
         buildFishList();
 
 
-        mRiders = FirebaseDatabase.getInstance().getReference().child("rides").child(mRideKey).child("riders");
+ /*       mRiders = FirebaseDatabase.getInstance().getReference().child("rides").child(mRideKey).child("riders");
         mRiders.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -103,7 +103,7 @@ public class WaitingScreenActivity extends NoUserActivity {
                                 intent.putExtra("userId", rider.getKey());
                                 startActivity(intent);
                             }
-                        });*/
+                        });
                     }
                     i++;
                 }
@@ -114,7 +114,7 @@ public class WaitingScreenActivity extends NoUserActivity {
 
             }
         });
-
+*/
         mDepartureTimeTextView = (TextView) findViewById(R.id.departureTimeTextView);
         mDepartureTimeTextView.setText("Leaving at " + time);
 
