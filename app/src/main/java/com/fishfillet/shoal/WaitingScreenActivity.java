@@ -76,7 +76,7 @@ public class WaitingScreenActivity extends NoUserActivity {
         mScreenHeight = metrics.heightPixels;
 
         mSeatsRemainingTextView = (TextView) findViewById(R.id.seatsRemainingTextView);
-        mSeatsRemainingTextView.setText( maxPassengers + " out of " + passengers + " passengers");
+        mSeatsRemainingTextView.setText( passengers + " out of " + maxPassengers + " passengers");
 
         mFishImage1 = (ImageView) findViewById(R.id.iv_onePassengers);
         mFishImage2 = (ImageView) findViewById(R.id.iv_twoPassengers);

@@ -151,7 +151,7 @@ public class RideDetailActivity  extends BaseActivity{
                 mTextNotes.setText("Notes: " + r.notes);
 
                 time = r.timedepart;
-                passengers = r.passengersleft;
+                passengers = r.maxpassengers - r.passengersleft;
                 maxPassengers = r.maxpassengers;
             }
 
