@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="Where did this come from??"
+        android:text="Save vehicle"
         android:textColor="@color/colorPrimary"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -25,7 +25,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
-        android:text="In your user profile there is a setting for car information, feel free to change it there for future use." />
+        android:text="Save time by saving your vehicle information in your user profile!." />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"

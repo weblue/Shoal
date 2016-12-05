@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:layout_gravity="center"
-        android:backgroundTint="@android:color/white"
-        android:textColor="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite" />
 </LinearLayout>
