@@ -117,8 +117,8 @@ public class RideDetailActivity  extends BaseActivity{
 
                         Intent intent = new Intent(RideDetailActivity.this, WaitingScreenActivity.class);
                         intent.putExtra("time", time);
-                        intent.putExtra("passengers",passengers);
-                        intent.putExtra("maxPassengers",mTextMaxPassengers.getText().toString());
+                        intent.putExtra("passengers",passengers + 1);
+                        intent.putExtra("maxPassengers", maxPassengers);
                         intent.putExtra("ride_key", mRideKey);
                         startActivity(intent);
                    // }
