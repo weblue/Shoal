@@ -67,20 +67,14 @@ public class RideDetailActivity  extends BaseActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_detail);
+        super.onCreate(savedInstanceState);
 
         Bundle bundle = getIntent().getExtras();
         mRideKey = bundle.getString(EXTRA_RIDE_KEY);
 
         setup();
         setForm();
-
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
-        setSupportActionBar(myToolbar);
 
     }
 

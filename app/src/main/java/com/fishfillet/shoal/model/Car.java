@@ -7,6 +7,7 @@ import java.util.Map;
  * Created by Stephen on 11/9/2016.
  */
 
+
 public class Car {
     public String make;
     public String model;
@@ -14,6 +15,10 @@ public class Car {
     public String color;
     public String plate;
     public String driverid;
+
+    public Car(){
+
+    }
 
     public Car(String make, String model, String year, String color, String plate,String driverid){
         this.make = make;

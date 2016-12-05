@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/activity_driver"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -127,20 +127,27 @@
                         android:id="@+id/editTextColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".5"
+                        android:layout_weight="0.74"
                         android:hint="Car color"
                         android:padding="16dp"
                         tools:ignore="HardcodedText" />
 
                     <EditText
                         android:id="@+id/editTextYear"
-                        android:layout_width="wrap_content"
+                        android:layout_width="93dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".5"
                         android:hint="Car year"
                         android:inputType="number"
                         android:padding="16dp"
-                        tools:ignore="HardcodedText" />
+                        tools:ignore="HardcodedText"
+                        android:layout_weight="0.30" />
+
+                    <Button
+                        android:text="@string/help_button"
+                        android:layout_width="51dp"
+                        android:layout_height="54dp"
+                        android:background="@drawable/question_icon"
+                        android:id="@+id/driver_help_button" />
 
                 </LinearLayout>
 

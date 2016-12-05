@@ -26,4 +26,5 @@
     <string name="signup_btn">Sign Up</string>
     <string name="forgotpw_btn">Forgot password</string>
     <string name="title_activity_intro">Intro</string>
+    <string name="help_button"></string>
 </resources>

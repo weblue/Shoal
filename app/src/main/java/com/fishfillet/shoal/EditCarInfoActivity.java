@@ -56,8 +56,8 @@ public class EditCarInfoActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
+        super.onCreate(savedInstanceState);
         mSharedPref = getSharedPreferences("com.fishfillet.shoal.car ", Context.MODE_PRIVATE);
         this.Setup();
         buttonFinish = (Button) findViewById(R.id.buttonFinishUserEdit);
@@ -79,7 +79,7 @@ public class EditCarInfoActivity extends BaseActivity {
         buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ValidFields()){
+               // if(ValidFields()){
                     mDatabase = FirebaseDatabase.getInstance().getReference();
                     carBuilder.setDriverId(getUid()).setModel(editTextCarModel.getText().toString())
                             .setColor(editTextCarColor.getText().toString())
@@ -102,7 +102,7 @@ public class EditCarInfoActivity extends BaseActivity {
                     else{
                         finish();
                     }
-                }
+              //  }
             }
         });
 
@@ -133,13 +133,14 @@ public class EditCarInfoActivity extends BaseActivity {
         //Transfer all data to the field
         Car car = carBuilder.build();
         //String key = mDatabase.child("rides").child(ride.getDriver()).push().getKey();
-        Map<String, Object> rideMap = car.toMap();
+        Map<String, Object> carMap = car.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/users/" + car.driverid, rideMap);
+        childUpdates.put("/user_info/" + car.driverid + "/car_info/", carMap);
 
         SharedPreferences.Editor editor = mSharedPref.edit();
         editor.putString("color", editTextCarColor.getText().toString());
         editor.putString("make", editTextCarMake.getText().toString());
+        editor.putString("model", editTextCarModel.getText().toString());
         editor.putString("year", editTextCarYear.getText().toString());
         editor.putString("plate", editTextCarPlate.getText().toString());
         editor.apply();

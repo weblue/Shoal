@@ -178,11 +178,11 @@ public class SignUpActivity extends MainActivity {
                     mFirebaseDatabaseReference.child("user_info").push().setValue(u_info);
                     //Magic
                     AlertDialog.Builder alertdialogBuilder = new AlertDialog.Builder(signupView.getContext());
-                    //alertdialogBuilder.setTitle("Driver?");
-                    //alertdialogBuilder.setMessage("Do you have a car?");
                     View layout = signupinflater.inflate(R.layout.activity_popup,null,false);
                     Button noCarButton = (Button)layout.findViewById(R.id.no_car_button);
                     Button yesCarButton = (Button) layout.findViewById(R.id.yes_car_button);
+                    alertdialogBuilder.setView(layout);
+                    final AlertDialog alertDialog = alertdialogBuilder.create();
                     noCarButton.setOnClickListener(new View.OnClickListener() {
 
                         @Override
@@ -191,6 +191,7 @@ public class SignUpActivity extends MainActivity {
                                 @Override
                                 public void run() {
                                     progressDialog.cancel();
+                                    alertDialog.dismiss();
                                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                     overridePendingTransition(R.anim.activity_start_enter, R.anim.activity_start_exit);
                                     finish();
@@ -204,13 +205,12 @@ public class SignUpActivity extends MainActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(getApplicationContext(), EditCarInfoActivity.class);
                             intent.putExtra("nextActivity", "Main");
+                            alertDialog.dismiss();
                             startActivity(intent);
                             finish();
                         }
                     });
-
-                    alertdialogBuilder.setView(layout);
-                    alertdialogBuilder.create().show();
+                    alertDialog.show();
 
                     /*alertdialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override

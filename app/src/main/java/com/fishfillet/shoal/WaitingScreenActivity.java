@@ -43,11 +43,11 @@ public class WaitingScreenActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.fragment_waiting_screen);
         super.onCreate(savedInstanceState);
 
         Log.e("WaitingScreenActivity", "Activity started");
 
-        setContentView(R.layout.fragment_waiting_screen);
 
         Bundle bundle = getIntent().getExtras();
         Log.e("asdf", bundle.toString());

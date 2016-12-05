@@ -31,16 +31,12 @@ public class RiderActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setContentView(R.layout.activity_rider);
         super.onCreate(savedInstanceState);
 
         Log.d("activity", "create");
 
-        setContentView(R.layout.activity_rider);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
-        setSupportActionBar(myToolbar);
 
         // [START create_database_reference]
         mDatabase = FirebaseDatabase.getInstance().getReference();

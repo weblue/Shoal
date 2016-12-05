@@ -22,9 +22,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -36,11 +35,6 @@ public class MainActivity extends BaseActivity {
             finish();
             return;
         }
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        myToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
-        setSupportActionBar(myToolbar);
 
         mDriver = (ImageView) findViewById(R.id.iv_launchDrive);
         final Intent driverIntent = new Intent(this, DriverActivity.class);
