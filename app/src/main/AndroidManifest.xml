@@ -29,6 +29,7 @@
         <activity android:name=".RideDetailActivity" />
         <activity android:name=".MainActivity"/>
         <activity android:name=".EditCarInfoActivity"/>
+        <activity android:name=".AboutActivity"/>
     </application>
 
 </manifest>

@@ -27,4 +27,5 @@
     <string name="forgotpw_btn">Forgot password</string>
     <string name="title_activity_intro">Intro</string>
     <string name="help_button"></string>
+    <string name="about">Hello! \n\n This app is for those looking to offer and find carpooling rides with others.  You can sign up as a driver or a rider.  While we do not handle money some compensation to the driver is welcome.</string>
 </resources>
