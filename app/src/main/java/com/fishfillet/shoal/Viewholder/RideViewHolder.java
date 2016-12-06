@@ -31,7 +31,7 @@ public class RideViewHolder extends RecyclerView.ViewHolder {
     public void bindToRide(Ride ride) {
         destinationView.setText(ride.locdest);
         departView.setText("Leaves at " + ride.timedepart);
-        capacityView.setText(ride.passengersleft + " out of " + ride.maxpassengers + " remaining");
+        capacityView.setText(ride.passengersleft + "/" + ride.maxpassengers + " seats remaining");
        // titleView.setText(post.title);
        // authorView.setText(post.author);
        // numStarsView.setText(String.valueOf(post.starCount));
